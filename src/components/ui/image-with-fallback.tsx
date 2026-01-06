@@ -6,8 +6,14 @@ import { motion, MotionProps } from "framer-motion";
 // Default placeholder image path
 const DEFAULT_PLACEHOLDER = "/images/placeholder.jpg";
 
+// Props that conflict between HTML img and motion.img
+type ConflictingProps = "onDrag" | "onDragStart" | "onDragEnd";
+
 interface ImageWithFallbackProps
-  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "onError"> {
+  extends Omit<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    "onError" | ConflictingProps
+  > {
   src: string;
   alt: string;
   fallbackSrc?: string;
@@ -61,6 +67,8 @@ export function ImageWithFallback({
     imgSrc === defaultPlaceholder || (fallbackSrc && imgSrc === fallbackSrc);
 
   if (motionProps) {
+    // Filter out conflicting props when using motion.img
+    const { onDrag, onDragStart, onDragEnd, ...safeProps } = props as any;
     return (
       <div className="relative w-full h-full">
         <motion.img
@@ -69,7 +77,7 @@ export function ImageWithFallback({
           className={className}
           onError={handleError}
           {...motionProps}
-          {...props}
+          {...safeProps}
         />
         {isPlaceholder && (
           <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-primary/20 to-background/90 mix-blend-multiply pointer-events-none" />
