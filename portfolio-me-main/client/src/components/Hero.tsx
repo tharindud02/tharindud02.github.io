@@ -156,32 +156,33 @@ export function Hero() {
           <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[500px] md:h-[500px]">
             {/* Abstract Shapes behind */}
             <div className="absolute inset-0 bg-gradient-to-tr from-primary to-blue-500 rounded-full opacity-20 blur-2xl animate-pulse" />
-            
+
             <div className="absolute inset-4 rounded-full border-2 border-primary/20" />
             <div className="absolute inset-12 rounded-full border-2 border-primary/20 border-dashed animate-[spin_60s_linear_infinite]" />
-            
+
             {/* Avatar Image with grey/color hover effect */}
             <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-background shadow-2xl group">
-              <img 
-                src="/images/avatar.jpg" 
-                alt="Tharindu Damith" 
+              <img
+                src="/images/avatar.jpg"
+                alt="Tharindu Damith"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=60";
+                  (e.target as HTMLImageElement).src =
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=60";
                 }}
               />
             </div>
 
             {/* Floating badges */}
-            <FloatingBadge 
-              text="5+ Years" 
+            <FloatingBadge
+              text="5+ Years"
               className="absolute top-10 right-10 animate-bounce"
               delay={0}
             />
-            <FloatingBadge 
-              text="Full Stack" 
-              className="absolute bottom-20 left-0" 
-              delay={1} 
+            <FloatingBadge
+              text="Full Stack"
+              className="absolute bottom-20 left-0"
+              delay={1}
             />
           </div>
         </motion.div>
@@ -216,7 +217,15 @@ function SocialLink({
   );
 }
 
-function FloatingBadge({ text, className, delay }: { text: string; className?: string; delay: number }) {
+function FloatingBadge({
+  text,
+  className,
+  delay,
+}: {
+  text: string;
+  className?: string;
+  delay: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

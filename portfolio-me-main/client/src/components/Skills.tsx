@@ -13,7 +13,11 @@ export function Skills() {
   }, {} as Record<string, typeof skills>);
 
   return (
-    <Section id="skills" title="Professional Skills" subtitle="My technical toolkit">
+    <Section
+      id="skills"
+      title="Professional Skills"
+      subtitle="My technical toolkit"
+    >
       {isLoading ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -35,8 +39,8 @@ export function Skills() {
             >
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-xl" />
-              
-              <motion.h3 
+
+              <motion.h3
                 className="text-xl font-bold mb-6 text-foreground border-b border-border/50 pb-3 group-hover:text-primary transition-colors relative z-10"
                 whileHover={{ x: 5 }}
               >

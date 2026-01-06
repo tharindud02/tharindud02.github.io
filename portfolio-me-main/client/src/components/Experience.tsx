@@ -23,18 +23,20 @@ export function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.1 }}
-                className={`relative flex flex-col md:flex-row gap-8 ${
+                className={`relative flex flex-col md:flex-row items-center gap-8 ${
                   idx % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
               >
-                {/* Timeline Dot - Perfectly centered */}
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 0.3, type: "spring" }}
-                  className="absolute left-8 md:left-1/2 w-6 h-6 bg-primary rounded-full border-4 border-background -translate-x-1/2 top-6 md:top-1/2 md:-translate-y-1/2 z-20 shadow-lg shadow-primary/50"
-                />
+                {/* Timeline Dot - Perfectly centered with card */}
+                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 flex-shrink-0">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 + 0.3, type: "spring" }}
+                    className="w-6 h-6 bg-primary rounded-full border-4 border-background shadow-lg shadow-primary/50"
+                  />
+                </div>
 
                 {/* Content Card */}
                 <div className={`flex-1 ${idx % 2 === 0 ? "md:pr-12" : "md:pl-12"} ml-16 md:ml-0 group`}>
