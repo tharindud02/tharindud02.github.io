@@ -32,9 +32,13 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
   // Normalize empty string to use placeholder immediately
   const normalizedSrc = useMemo(() => {
-    if (!src || src.trim() === "") return defaultPlaceholder;
+    if (!src || src.trim() === "")
+      return defaultPlaceholder || DEFAULT_PLACEHOLDER;
     return src;
   }, [src, defaultPlaceholder]);
+
+  // Ensure we always have a valid placeholder
+  const finalPlaceholder = defaultPlaceholder || DEFAULT_PLACEHOLDER;
 
   const [imgSrc, setImgSrc] = useState<string>(normalizedSrc);
   const [errorCount, setErrorCount] = useState(0);
@@ -46,25 +50,42 @@ export function ImageWithFallback({
   }, [normalizedSrc]);
 
   const handleError = () => {
-    // Prevent infinite loops by checking if we're already showing the placeholder
-    if (imgSrc === defaultPlaceholder) {
+    // Prevent infinite loops
+    if (errorCount >= 2) {
       return;
     }
 
-    if (errorCount === 0 && fallbackSrc && fallbackSrc !== defaultPlaceholder) {
-      // First error: try fallback (only if it's different from placeholder)
+    // If we're already showing the placeholder, don't do anything
+    if (imgSrc === finalPlaceholder) {
+      return;
+    }
+
+    // If fallbackSrc is provided and different from finalPlaceholder, try it first
+    if (
+      errorCount === 0 &&
+      fallbackSrc &&
+      fallbackSrc !== finalPlaceholder &&
+      fallbackSrc !== imgSrc
+    ) {
       setErrorCount(1);
       setImgSrc(fallbackSrc);
     } else {
-      // Second error, no fallback, or fallback is same as placeholder: use default placeholder
+      // Use default placeholder (either no fallback, fallback failed, or fallback is same as placeholder)
       setErrorCount(2);
-      setImgSrc(defaultPlaceholder);
+      setImgSrc(finalPlaceholder);
     }
   };
 
   // Check if current image is the placeholder to apply mask
   const isPlaceholder =
-    imgSrc === defaultPlaceholder || (fallbackSrc && imgSrc === fallbackSrc);
+    imgSrc === finalPlaceholder || (fallbackSrc && imgSrc === fallbackSrc);
+
+  // Add greyscale filter for placeholder images
+  const placeholderClassName = isPlaceholder
+    ? className
+      ? `${className} grayscale`
+      : "grayscale"
+    : className;
 
   if (motionProps) {
     // Filter out conflicting props when using motion.img
@@ -74,7 +95,7 @@ export function ImageWithFallback({
         <motion.img
           src={imgSrc}
           alt={alt}
-          className={className}
+          className={placeholderClassName}
           onError={handleError}
           {...motionProps}
           {...safeProps}
@@ -91,7 +112,7 @@ export function ImageWithFallback({
       <img
         src={imgSrc}
         alt={alt}
-        className={className}
+        className={placeholderClassName}
         onError={handleError}
         {...props}
       />

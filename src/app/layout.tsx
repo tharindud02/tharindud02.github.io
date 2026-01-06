@@ -26,6 +26,13 @@ export const metadata: Metadata = {
   title: "Tharindu Damith - Full Stack Engineer & Web3 Developer",
   description: "A passionate Full Stack Engineer crafting exceptional digital experiences with modern technologies.",
   keywords: ["Full Stack Developer", "Web3 Developer", "React", "Next.js", "Solana", "Blockchain"],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
