@@ -19,51 +19,74 @@ export function Projects() {
           {projects?.map((project, idx) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-2xl hover:-translate-y-1 flex flex-col h-full"
+              initial={{ opacity: 0, y: 50, rotateX: -15 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              whileHover={{ y: -10, rotateY: 5 }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="group relative bg-background/40 backdrop-blur-xl rounded-3xl overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 flex flex-col h-full perspective-1000"
             >
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-xl" />
+              
               {/* Image Container */}
               <div className="relative h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10" />
-                <img 
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <motion.img 
                   src={project.imageUrl || `https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80`} 
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 />
+                <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/0 transition-colors duration-500" />
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+              <div className="p-6 flex flex-col flex-1 relative z-10">
+                <motion.h3 
+                  className="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+                  whileHover={{ x: 5 }}
+                >
                   {project.title}
-                </h3>
+                </motion.h3>
                 
-                <p className="text-muted-foreground text-sm mb-6 flex-1 line-clamp-3">
+                <p className="text-muted-foreground text-sm mb-6 flex-1 line-clamp-3 leading-relaxed">
                   {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="px-2 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-md border border-border"
+                  {project.technologies.map((tech, techIdx) => (
+                    <motion.span 
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 + techIdx * 0.05 }}
+                      whileHover={{ scale: 1.1 }}
+                      className="px-3 py-1 text-xs font-medium bg-secondary/50 backdrop-blur-sm text-secondary-foreground rounded-full border border-border/50 group-hover:border-primary/30 transition-colors"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 
-                <a 
+                <motion.a 
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-emerald-400 transition-colors mt-auto"
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-emerald-300 transition-colors mt-auto group/link"
                 >
-                  Visit Website <ExternalLink className="w-4 h-4" />
-                </a>
+                  <span>Visit Website</span>
+                  <motion.div
+                    whileHover={{ x: 3, rotate: -45 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </motion.div>
+                </motion.a>
               </div>
             </motion.div>
           ))}

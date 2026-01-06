@@ -31,23 +31,48 @@ export const skills: Skill[] = [
   { id: 4, name: "TypeScript", category: "Front-End", proficiency: "Advance" },
   { id: 5, name: "React", category: "Front-End", proficiency: "Advance" },
   { id: 6, name: "Next.js", category: "Front-End", proficiency: "Advance" },
-  { id: 7, name: "Angular", category: "Front-End", proficiency: "Intermediate" },
+  {
+    id: 7,
+    name: "Angular",
+    category: "Front-End",
+    proficiency: "Intermediate",
+  },
   { id: 8, name: "Vue.js", category: "Front-End", proficiency: "Intermediate" },
-  { id: 9, name: "Tailwind CSS", category: "Front-End", proficiency: "Advance" },
+  {
+    id: 9,
+    name: "Tailwind CSS",
+    category: "Front-End",
+    proficiency: "Advance",
+  },
   { id: 10, name: "SASS/SCSS", category: "Front-End", proficiency: "Advance" },
-  
+
   // Back-End
   { id: 11, name: "Node.js", category: "Back-End", proficiency: "Advance" },
   { id: 12, name: "Express.js", category: "Back-End", proficiency: "Advance" },
   { id: 13, name: "NestJS", category: "Back-End", proficiency: "Intermediate" },
   { id: 14, name: "Java", category: "Back-End", proficiency: "Advance" },
-  { id: 15, name: "Spring Boot", category: "Back-End", proficiency: "Intermediate" },
+  {
+    id: 15,
+    name: "Spring Boot",
+    category: "Back-End",
+    proficiency: "Intermediate",
+  },
   { id: 16, name: "Python", category: "Back-End", proficiency: "Intermediate" },
-  { id: 17, name: "FastAPI", category: "Back-End", proficiency: "Intermediate" },
+  {
+    id: 17,
+    name: "FastAPI",
+    category: "Back-End",
+    proficiency: "Intermediate",
+  },
   { id: 18, name: "PHP", category: "Back-End", proficiency: "Advance" },
-  { id: 19, name: "Laravel", category: "Back-End", proficiency: "Intermediate" },
+  {
+    id: 19,
+    name: "Laravel",
+    category: "Back-End",
+    proficiency: "Intermediate",
+  },
   { id: 20, name: "Go", category: "Back-End", proficiency: "Beginner" },
-  
+
   // Database
   { id: 21, name: "PostgreSQL", category: "Database", proficiency: "Advance" },
   { id: 22, name: "MySQL", category: "Database", proficiency: "Advance" },
@@ -55,32 +80,72 @@ export const skills: Skill[] = [
   { id: 24, name: "Redis", category: "Database", proficiency: "Intermediate" },
   { id: 25, name: "Firebase", category: "Database", proficiency: "Advance" },
   { id: 26, name: "Prisma", category: "Database", proficiency: "Intermediate" },
-  
+
   // Mobile
   { id: 27, name: "React Native", category: "Mobile", proficiency: "Advance" },
   { id: 28, name: "Flutter", category: "Mobile", proficiency: "Intermediate" },
   { id: 29, name: "Ionic", category: "Mobile", proficiency: "Advance" },
   { id: 30, name: "Swift", category: "Mobile", proficiency: "Beginner" },
   { id: 31, name: "Kotlin", category: "Mobile", proficiency: "Beginner" },
-  
+
   // Web3 (Solana)
   { id: 32, name: "Solana", category: "Web3", proficiency: "Intermediate" },
   { id: 33, name: "Rust", category: "Web3", proficiency: "Intermediate" },
   { id: 34, name: "Anchor", category: "Web3", proficiency: "Intermediate" },
-  { id: 35, name: "@solana/web3.js", category: "Web3", proficiency: "Intermediate" },
-  { id: 36, name: "Smart Contracts", category: "Web3", proficiency: "Intermediate" },
+  {
+    id: 35,
+    name: "@solana/web3.js",
+    category: "Web3",
+    proficiency: "Intermediate",
+  },
+  {
+    id: 36,
+    name: "Smart Contracts",
+    category: "Web3",
+    proficiency: "Intermediate",
+  },
   { id: 37, name: "SPL Tokens", category: "Web3", proficiency: "Intermediate" },
-  { id: 38, name: "Phantom Wallet", category: "Web3", proficiency: "Intermediate" },
+  {
+    id: 38,
+    name: "Phantom Wallet",
+    category: "Web3",
+    proficiency: "Intermediate",
+  },
   { id: 39, name: "Metaplex", category: "Web3", proficiency: "Beginner" },
-  
+
   // DevOps & Tools
   { id: 40, name: "Git", category: "DevOps & Tools", proficiency: "Advance" },
-  { id: 41, name: "Docker", category: "DevOps & Tools", proficiency: "Intermediate" },
-  { id: 42, name: "Kubernetes", category: "DevOps & Tools", proficiency: "Beginner" },
-  { id: 43, name: "AWS", category: "DevOps & Tools", proficiency: "Intermediate" },
-  { id: 44, name: "CI/CD", category: "DevOps & Tools", proficiency: "Intermediate" },
+  {
+    id: 41,
+    name: "Docker",
+    category: "DevOps & Tools",
+    proficiency: "Intermediate",
+  },
+  {
+    id: 42,
+    name: "Kubernetes",
+    category: "DevOps & Tools",
+    proficiency: "Beginner",
+  },
+  {
+    id: 43,
+    name: "AWS",
+    category: "DevOps & Tools",
+    proficiency: "Intermediate",
+  },
+  {
+    id: 44,
+    name: "CI/CD",
+    category: "DevOps & Tools",
+    proficiency: "Intermediate",
+  },
   { id: 45, name: "Jira", category: "DevOps & Tools", proficiency: "Advance" },
-  { id: 46, name: "Postman", category: "DevOps & Tools", proficiency: "Advance" },
+  {
+    id: 46,
+    name: "Postman",
+    category: "DevOps & Tools",
+    proficiency: "Advance",
+  },
 ];
 
 export const experience: Experience[] = [

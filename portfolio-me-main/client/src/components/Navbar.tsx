@@ -25,14 +25,21 @@ export function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-nav py-4" : "py-6 bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "glass-strong py-4 shadow-lg shadow-primary/5" : "py-6 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <div className="text-2xl font-bold font-display tracking-tighter">
-          TD<span className="text-primary">.</span>
-        </div>
+        <motion.div 
+          className="text-2xl font-bold font-display tracking-tighter"
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 400 }}
+        >
+          <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+            TD
+          </span>
+          <span className="text-primary animate-pulse">.</span>
+        </motion.div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">

@@ -25,23 +25,35 @@ export function Skills() {
           {Object.entries(groupedSkills || {}).map(([category, items], idx) => (
             <motion.div
               key={category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-card rounded-2xl p-6 border border-border hover:border-primary/50 transition-colors group"
+              initial={{ opacity: 0, y: 30, rotateX: -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative bg-background/40 backdrop-blur-xl rounded-3xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-500 group shadow-lg hover:shadow-2xl hover:shadow-primary/10"
             >
-              <h3 className="text-xl font-bold mb-6 text-foreground border-b border-border pb-2 group-hover:text-primary transition-colors">
-                {category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {items.map((skill) => (
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-xl" />
+              
+              <motion.h3 
+                className="text-xl font-bold mb-6 text-foreground border-b border-border/50 pb-3 group-hover:text-primary transition-colors relative z-10"
+                whileHover={{ x: 5 }}
+              >
+                <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+                  {category}
+                </span>
+              </motion.h3>
+              <div className="flex flex-wrap gap-2 relative z-10">
+                {items.map((skill, skillIdx) => (
                   <motion.span
                     key={skill.id}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="px-4 py-2 bg-secondary/50 border border-border rounded-lg text-sm font-medium text-foreground hover:border-primary/50 hover:bg-secondary transition-colors"
+                    transition={{ delay: idx * 0.1 + skillIdx * 0.03 }}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="px-4 py-2 bg-secondary/30 backdrop-blur-sm border border-border/50 rounded-xl text-sm font-medium text-foreground hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 cursor-default"
                   >
                     {skill.name}
                   </motion.span>
