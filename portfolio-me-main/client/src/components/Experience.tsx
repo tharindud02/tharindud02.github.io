@@ -10,7 +10,7 @@ export function Experience() {
     <Section id="experience" title="Work Experience" subtitle="My professional journey">
       <div className="relative max-w-4xl mx-auto">
         {/* Timeline Line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 md:translate-x-0 ml-4 md:ml-0" />
+        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border/50 -translate-x-1/2 md:translate-x-0 ml-4 md:ml-0" />
 
         <div className="space-y-12">
           {isLoading ? (
@@ -23,17 +23,17 @@ export function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className={`relative flex flex-col md:flex-row gap-8 ${
+                className={`relative flex flex-col md:flex-row gap-8 items-center ${
                   idx % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
               >
-                {/* Timeline Dot */}
+                {/* Timeline Dot - Aligned to center */}
                 <motion.div 
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 + 0.3, type: "spring" }}
-                  className="absolute left-0 md:left-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background -translate-x-1/2 translate-y-1.5 ml-4 md:ml-0 z-10 shadow-lg shadow-primary/50"
+                  className="absolute left-0 md:left-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background -translate-x-1/2 top-1/2 -translate-y-1/2 ml-4 md:ml-0 z-10 shadow-lg shadow-primary/50"
                 />
 
                 {/* Content */}

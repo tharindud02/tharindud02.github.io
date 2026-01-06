@@ -151,30 +151,36 @@ export const skills: Skill[] = [
 export const experience: Experience[] = [
   {
     id: 1,
-    role: "Senior Software Engineer",
-    company: "CyberStorm Asia(Pvt) Ltd",
-    period: "August 2022 - Present",
+    role: "Senior Software Engineer and Web3 Dev",
+    company: "Apium Innovation(Pvt) Ltd",
+    period: "October 2023 - Present",
   },
   {
     id: 2,
+    role: "Senior Software Engineer",
+    company: "CyberStorm Asia(Pvt) Ltd",
+    period: "August 2022 - August 2023",
+  },
+  {
+    id: 3,
     role: "Software Engineer & Saleforce Developer",
     company: "Apium Innovation(Pvt) Ltd",
     period: "July 2018 - August 2022",
   },
   {
-    id: 3,
+    id: 4,
     role: "Front-end Developer",
     company: "Productive Media",
     period: "September 2018 - December 2019",
   },
   {
-    id: 4,
+    id: 5,
     role: "IT Teacher",
     company: "Lak Aruna Foundation",
     period: "June 2016 - April 2017",
   },
   {
-    id: 5,
+    id: 6,
     role: "Former Web Developer",
     company: "CodeGen International(Pvt) Ltd",
     period: "Jan 2013 - May 2013",
