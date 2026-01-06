@@ -13,7 +13,7 @@ export function Skills() {
   }, {} as Record<string, typeof skills>);
 
   return (
-    <Section id="skills" title="Professional Skills" subtitle="My technical toolkit and proficiency levels">
+    <Section id="skills" title="Professional Skills" subtitle="My technical toolkit">
       {isLoading ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -34,14 +34,14 @@ export function Skills() {
               <h3 className="text-xl font-bold mb-6 text-foreground border-b border-border pb-2 group-hover:text-primary transition-colors">
                 {category}
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {items.map((skill) => (
                   <motion.span
                     key={skill.id}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="px-4 py-2 bg-secondary/50 text-foreground rounded-lg text-sm font-medium border border-border hover:border-primary/50 hover:bg-secondary transition-colors"
+                    className="px-4 py-2 bg-secondary/50 border border-border rounded-lg text-sm font-medium text-foreground hover:border-primary/50 hover:bg-secondary transition-colors"
                   >
                     {skill.name}
                   </motion.span>

@@ -33,7 +33,6 @@ export const skills: Skill[] = [
   { id: 7, name: "PHP", category: "Back-End", proficiency: "Advance" },
   { id: 8, name: "Node", category: "Back-End", proficiency: "Intermediate" },
   { id: 9, name: "Python", category: "Back-End", proficiency: "Beginner" },
-  { id: 19, name: "Rust", category: "Back-End", proficiency: "Intermediate" },
   { id: 10, name: "MySQL", category: "Database", proficiency: "Advance" },
   { id: 11, name: "Firebase", category: "Database", proficiency: "Advance" },
   { id: 12, name: "MongoDB", category: "Database", proficiency: "Advance" },
@@ -43,7 +42,14 @@ export const skills: Skill[] = [
   { id: 16, name: "AWS", category: "Other", proficiency: "Beginner" },
   { id: 17, name: "Git", category: "Other", proficiency: "Advance" },
   { id: 18, name: "Jira", category: "Other", proficiency: "Advance" },
-  { id: 20, name: "Web3 Dev (Solana Smart Contract)", category: "Other", proficiency: "Intermediate" },
+  { id: 19, name: "Solidity", category: "Web3", proficiency: "Intermediate" },
+  { id: 20, name: "Ethereum", category: "Web3", proficiency: "Intermediate" },
+  { id: 21, name: "Web3.js", category: "Web3", proficiency: "Intermediate" },
+  { id: 22, name: "Ethers.js", category: "Web3", proficiency: "Intermediate" },
+  { id: 23, name: "Smart Contracts", category: "Web3", proficiency: "Intermediate" },
+  { id: 24, name: "Hardhat", category: "Web3", proficiency: "Intermediate" },
+  { id: 25, name: "Truffle", category: "Web3", proficiency: "Beginner" },
+  { id: 26, name: "IPFS", category: "Web3", proficiency: "Beginner" },
 ];
 
 export const experience: Experience[] = [
