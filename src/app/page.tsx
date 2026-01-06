@@ -2,19 +2,30 @@
 
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { Skills } from "@/components/Skills";
-import { Experience } from "@/components/Experience";
-import { Projects } from "@/components/Projects";
-import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
 import { ParticleBackground } from "@/components/ParticleBackground";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useSectionScroll } from "@/hooks/use-section-scroll";
+import dynamic from "next/dynamic";
 
-// Disable static generation for this page
-export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs';
+// Lazy load below-the-fold components for better initial load performance
+const About = dynamic(() => import("@/components/About").then(mod => ({ default: mod.About })), {
+  loading: () => <div className="min-h-screen" />,
+});
+const Skills = dynamic(() => import("@/components/Skills").then(mod => ({ default: mod.Skills })), {
+  loading: () => <div className="min-h-screen" />,
+});
+const Experience = dynamic(() => import("@/components/Experience").then(mod => ({ default: mod.Experience })), {
+  loading: () => <div className="min-h-screen" />,
+});
+const Projects = dynamic(() => import("@/components/Projects").then(mod => ({ default: mod.Projects })), {
+  loading: () => <div className="min-h-screen" />,
+});
+const Contact = dynamic(() => import("@/components/Contact").then(mod => ({ default: mod.Contact })), {
+  loading: () => <div className="min-h-screen" />,
+});
+const Footer = dynamic(() => import("@/components/Footer").then(mod => ({ default: mod.Footer })), {
+  loading: () => null,
+});
 
 export default function Home() {
   const { scrollYProgress } = useScroll();

@@ -1,15 +1,37 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const animationFrameRef = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    // Only start animation when component is visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0 }
+    );
+
+    if (canvasRef.current) {
+      observer.observe(canvasRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !isVisible) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -60,53 +82,80 @@ export function ParticleBackground() {
     }
 
     const particles: Particle[] = [];
-    const particleCount = 50;
+    // Reduced particle count for better performance
+    const particleCount = typeof window !== "undefined" && window.innerWidth < 768 ? 25 : 35;
 
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle(canvas.width, canvas.height));
     }
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let lastTime = 0;
+    const targetFPS = 30;
+    const frameInterval = 1000 / targetFPS;
 
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
+    const animate = (currentTime: number) => {
+      if (!isVisible) return;
 
-      // Connect nearby particles
-      particles.forEach((particle, i) => {
-        particles.slice(i + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+      const elapsed = currentTime - lastTime;
 
-          if (distance < 150) {
-            ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 * (1 - distance / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
-          }
+      if (elapsed >= frameInterval) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Batch drawing operations
+        ctx.beginPath();
+        particles.forEach((particle) => {
+          particle.update();
+          particle.draw();
         });
-      });
 
-      requestAnimationFrame(animate);
+        // Optimize connection drawing
+        ctx.beginPath();
+        let hasConnections = false;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distanceSquared = dx * dx + dy * dy;
+
+            if (distanceSquared < 22500) { // 150^2
+              const distance = Math.sqrt(distanceSquared);
+              if (!hasConnections) {
+                ctx.beginPath();
+                hasConnections = true;
+              }
+              ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 * (1 - distance / 150)})`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+            }
+          }
+        }
+        if (hasConnections) {
+          ctx.stroke();
+        }
+
+        lastTime = currentTime;
+      }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed inset-0 -z-10 pointer-events-none"
       style={{ opacity: 0.3 }}
+      aria-hidden="true"
     />
   );
 }

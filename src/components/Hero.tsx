@@ -9,7 +9,7 @@ import {
   Mail,
 } from "lucide-react";
 import { Link } from "react-scroll";
-import { ImageWithFallback } from "./ui/image-with-fallback";
+import { OptimizedImage } from "./ui/optimized-image";
 
 export function Hero() {
   return (
@@ -124,7 +124,7 @@ export function Hero() {
               label="GitHub"
             />
             <SocialLink
-              href="https://linkedin.com/in/chamathme"
+              href="https://linkedin.com/in/ztharinduz"
               icon={<Linkedin className="w-5 h-5" />}
               label="LinkedIn"
             />
@@ -152,11 +152,15 @@ export function Hero() {
 
             {/* Avatar Image with grey/color hover effect */}
             <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-background shadow-2xl group">
-              <ImageWithFallback
+              <OptimizedImage
                 src="/images/portfolio.jpg"
                 alt="Tharindu Damith"
                 fallbackSrc="/images/avatar_old.jpg"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                fill
+                priority
+                loading="eager"
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                sizes="(max-width: 768px) 288px, (max-width: 1024px) 384px, 500px"
               />
             </div>
 

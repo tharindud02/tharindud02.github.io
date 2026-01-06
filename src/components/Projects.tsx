@@ -4,7 +4,7 @@ import { Section } from "./Section";
 import { useProjects } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
 import { ExternalLink, Code } from "lucide-react";
-import { ImageWithFallback } from "./ui/image-with-fallback";
+import { OptimizedImage } from "./ui/optimized-image";
 
 export function Projects() {
   const { data: projects, isLoading } = useProjects();
@@ -40,15 +40,18 @@ export function Projects() {
               {/* Image Container */}
               <div className="relative h-48 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <ImageWithFallback
+                <OptimizedImage
                   src={project.imageUrl || ""}
                   alt={project.title}
                   fallbackSrc="/images/placeholder.jpg"
-                  className="w-full h-full object-cover"
+                  fill
+                  loading="lazy"
+                  className="object-cover"
                   motionProps={{
                     whileHover: { scale: 1.15 },
                     transition: { duration: 0.6, ease: "easeOut" },
                   }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/0 transition-colors duration-500" />
               </div>
