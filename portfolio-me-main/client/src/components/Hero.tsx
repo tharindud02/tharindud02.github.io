@@ -5,7 +5,6 @@ import {
   Github,
   Linkedin,
   Mail,
-  Sparkles,
 } from "lucide-react";
 import { Link } from "react-scroll";
 
@@ -43,18 +42,6 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="space-y-8"
         >
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm"
-          >
-            <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">
-              Available for opportunities
-            </span>
-          </motion.div>
-
           <div className="space-y-6">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -175,7 +162,7 @@ export function Hero() {
 
             {/* Floating badges */}
             <FloatingBadge
-              text="5+ Years"
+              text={`${new Date().getFullYear() - 2018}+ Years`}
               className="absolute top-10 right-10 animate-bounce"
               delay={0}
             />
