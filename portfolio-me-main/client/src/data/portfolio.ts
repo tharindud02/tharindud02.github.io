@@ -151,7 +151,7 @@ export const skills: Skill[] = [
 export const experience: Experience[] = [
   {
     id: 1,
-    role: "Senior Software Engineer and Web3 Dev",
+    role: "Senior Software Engineer & Blockchain Developer",
     company: "Apium Innovation(Pvt) Ltd",
     period: "October 2023 - Present",
   },
