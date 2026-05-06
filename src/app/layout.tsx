@@ -23,9 +23,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Tharindu Damith - Full Stack Engineer & Web3 Developer",
-  description: "A passionate Full Stack Engineer crafting exceptional digital experiences with modern technologies.",
-  keywords: ["Full Stack Developer", "Web3 Developer", "React", "Next.js", "Solana", "Blockchain"],
+  title: "Tharindu Damith Hashantha - Senior Software Engineer",
+  description: "Senior Software Engineer with 8+ years delivering full-stack, cloud-native, and AI-integrated production systems.",
+  keywords: ["Senior Software Engineer", "Full-Stack", "AI Systems", "LLM", "React", "Next.js", "Node.js", "AWS", "Solana"],
 };
 
 export default function RootLayout({

@@ -14,13 +14,13 @@ export function About() {
           className="prose prose-lg prose-invert text-muted-foreground"
         >
           <p className="lead text-xl text-foreground font-medium mb-6">
-            Dedicated professional driven by a deep passion for leveraging Information Technology to drive business success.
+            Senior Software Engineer with 8+ years building production-grade web platforms, mobile applications, and AI-integrated systems.
           </p>
           <p className="mb-6">
-            With a solid foundation of experience and a relentless work ethic, I excel in communication and possess a strong ability to deliver results. Through extensive self-study and practical application, I have developed exceptional skills in harnessing technology to efficiently meet project and team requirements.
+            I design and ship LLM-powered products, from real-time streaming interfaces to structured inference pipelines, with strong ownership across architecture, delivery, and reliability.
           </p>
           <p>
-            My portfolio showcases a proven track record of utilizing IT expertise to achieve business objectives effectively.
+            I am strongest when owning end-to-end delivery across cloud infrastructure, backend APIs, and frontend UX for fintech, healthcare, and automotive products.
           </p>
         </motion.div>
 
@@ -35,10 +35,10 @@ export function About() {
           
           <div className="space-y-4">
             <InfoRow label="Email" value="tharindud02@gmail.com" />
-            <InfoRow label="Phone" value="+94 71-4669-150" />
-            <InfoRow label="Address" value="Hingurukaduwa, Passara" />
-            <InfoRow label="Age" value="29 Years" />
-            <InfoRow label="Education" value="B.Sc, Physical Science ICT (University Of Sri Jayewardenenpura)" />
+            <InfoRow label="Location" value="Colombo, Sri Lanka" />
+            <InfoRow label="Role" value="Senior Software Engineer" />
+            <InfoRow label="Focus" value="Full-Stack Engineering & AI Systems" />
+            <InfoRow label="Education" value="B.Sc. in Physical Science (ICT), University of Sri Jayewardenepura" />
           </div>
         </motion.div>
       </div>

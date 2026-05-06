@@ -66,6 +66,15 @@ export function Experience() {
                         <Calendar className="w-3 h-3" />
                         <span>{exp.period}</span>
                       </motion.div>
+                      {exp.highlights && exp.highlights.length > 0 ? (
+                        <ul className={`mt-4 space-y-2 text-sm text-muted-foreground relative z-10 ${idx % 2 === 0 ? "" : "md:text-right"}`}>
+                          {exp.highlights.map((highlight) => (
+                            <li key={highlight} className="leading-relaxed">
+                              - {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
                    </motion.div>
                 </div>
                 

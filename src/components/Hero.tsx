@@ -72,11 +72,11 @@ export function Hero() {
               transition={{ delay: 0.5 }}
               className="text-xl sm:text-2xl text-muted-foreground max-w-lg leading-relaxed"
             >
-              A passionate{" "}
+              Senior Software Engineer focused on{" "}
               <span className="text-foreground font-semibold bg-gradient-to-r from-primary to-emerald-300 bg-clip-text text-transparent">
-                Full Stack Engineer
+                Full-Stack & AI Systems
               </span>{" "}
-              crafting exceptional digital experiences with modern technologies.
+              with 8+ years shipping production-grade products.
             </motion.p>
           </div>
 
@@ -124,7 +124,7 @@ export function Hero() {
               label="GitHub"
             />
             <SocialLink
-              href="https://linkedin.com/in/chamathme"
+              href="https://linkedin.com/in/ztharinduz"
               icon={<Linkedin className="w-5 h-5" />}
               label="LinkedIn"
             />
@@ -162,7 +162,7 @@ export function Hero() {
 
             {/* Floating badges */}
             <FloatingBadge
-              text={`${new Date().getFullYear() - 2018}+ Years`}
+              text="8+ Years"
               className="absolute top-10 right-10 animate-bounce"
               delay={0}
             />

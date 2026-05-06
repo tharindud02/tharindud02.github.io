@@ -3,8 +3,24 @@
 import { Section } from "./Section";
 import { useProjects } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
-import { ExternalLink, Code } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "./ui/image-with-fallback";
+
+const DEFAULT_PROJECT_IMAGE = "/images/placeholder.jpg";
+
+function isValidProjectLink(link: string): boolean {
+  const normalizedLink = link.trim();
+  if (normalizedLink === "" || normalizedLink === "#") {
+    return false;
+  }
+
+  try {
+    const parsedUrl = new URL(normalizedLink);
+    return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 export function Projects() {
   const { data: projects, isLoading } = useProjects();
@@ -13,7 +29,7 @@ export function Projects() {
     <Section
       id="projects"
       title="Featured Projects"
-      subtitle="A collection of my best work"
+      subtitle="Selected production systems across AI, fintech, mobile, and Web3"
     >
       {isLoading ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -23,7 +39,14 @@ export function Projects() {
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects?.map((project, idx) => (
+          {projects?.map((project, idx) => {
+            const hasValidLink = isValidProjectLink(project.link);
+            const projectImage =
+              project.imageUrl && project.imageUrl.trim() !== ""
+                ? project.imageUrl
+                : DEFAULT_PROJECT_IMAGE;
+
+            return (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50, rotateX: -15 }}
@@ -41,9 +64,10 @@ export function Projects() {
               <div className="relative h-48 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <ImageWithFallback
-                  src={project.imageUrl || ""}
+                  src={projectImage}
                   alt={project.title}
-                  fallbackSrc="/images/placeholder.jpg"
+                  fallbackSrc={DEFAULT_PROJECT_IMAGE}
+                  defaultPlaceholder={DEFAULT_PROJECT_IMAGE}
                   className="w-full h-full object-cover"
                   motionProps={{
                     whileHover: { scale: 1.15 },
@@ -82,24 +106,27 @@ export function Projects() {
                   ))}
                 </div>
 
-                <motion.a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ x: 5 }}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-emerald-300 transition-colors mt-auto group/link"
-                >
-                  <span>Visit Website</span>
-                  <motion.div
-                    whileHover={{ x: 3, rotate: -45 }}
-                    transition={{ type: "spring", stiffness: 400 }}
+                {hasValidLink ? (
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ x: 5 }}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-emerald-300 transition-colors mt-auto group/link"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.div>
-                </motion.a>
+                    <span>Visit Website</span>
+                    <motion.div
+                      whileHover={{ x: 3, rotate: -45 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </motion.div>
+                  </motion.a>
+                ) : null}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       )}
     </Section>

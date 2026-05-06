@@ -12,6 +12,7 @@ export interface Experience {
   role: string;
   company: string;
   period: string;
+  highlights?: string[];
 }
 
 export interface Project {
@@ -24,164 +25,150 @@ export interface Project {
 }
 
 export const skills: Skill[] = [
-  // Front-End
-  { id: 1, name: "HTML5", category: "Front-End", proficiency: "Advance" },
-  { id: 2, name: "CSS3", category: "Front-End", proficiency: "Advance" },
-  { id: 3, name: "JavaScript", category: "Front-End", proficiency: "Advance" },
-  { id: 4, name: "TypeScript", category: "Front-End", proficiency: "Advance" },
-  { id: 5, name: "React", category: "Front-End", proficiency: "Advance" },
-  { id: 6, name: "Next.js", category: "Front-End", proficiency: "Advance" },
-  {
-    id: 7,
-    name: "Angular",
-    category: "Front-End",
-    proficiency: "Intermediate",
-  },
-  { id: 8, name: "Vue.js", category: "Front-End", proficiency: "Intermediate" },
-  {
-    id: 9,
-    name: "Tailwind CSS",
-    category: "Front-End",
-    proficiency: "Advance",
-  },
-  { id: 10, name: "SASS/SCSS", category: "Front-End", proficiency: "Advance" },
+  // AI & LLM
+  { id: 1, name: "LLM API Integration", category: "AI & LLM", proficiency: "Advanced" },
+  { id: 2, name: "Prompt Engineering", category: "AI & LLM", proficiency: "Advanced" },
+  { id: 3, name: "Streaming Outputs", category: "AI & LLM", proficiency: "Advanced" },
+  { id: 4, name: "Structured Inference Pipelines", category: "AI & LLM", proficiency: "Advanced" },
+  { id: 5, name: "RAG Patterns", category: "AI & LLM", proficiency: "Advanced" },
 
-  // Back-End
-  { id: 11, name: "Node.js", category: "Back-End", proficiency: "Advance" },
-  { id: 12, name: "Express.js", category: "Back-End", proficiency: "Advance" },
-  { id: 13, name: "NestJS", category: "Back-End", proficiency: "Intermediate" },
-  { id: 14, name: "Java", category: "Back-End", proficiency: "Advance" },
-  { id: 16, name: "Python", category: "Back-End", proficiency: "Intermediate" },
-  {
-    id: 17,
-    name: "FastAPI",
-    category: "Back-End",
-    proficiency: "Intermediate",
-  },
-  { id: 18, name: "PHP", category: "Back-End", proficiency: "Advance" },
-  {
-    id: 19,
-    name: "Laravel",
-    category: "Back-End",
-    proficiency: "Intermediate",
-  },
-  { id: 20, name: "Go", category: "Back-End", proficiency: "Beginner" },
+  // Frontend
+  { id: 6, name: "React.js", category: "Frontend", proficiency: "Advanced" },
+  { id: 7, name: "Next.js", category: "Frontend", proficiency: "Advanced" },
+  { id: 8, name: "Angular", category: "Frontend", proficiency: "Advanced" },
+  { id: 9, name: "Vue.js", category: "Frontend", proficiency: "Advanced" },
+  { id: 10, name: "TypeScript", category: "Frontend", proficiency: "Advanced" },
+  { id: 11, name: "Tailwind CSS", category: "Frontend", proficiency: "Advanced" },
+  { id: 12, name: "Redux/Zustand", category: "Frontend", proficiency: "Advanced" },
+  { id: 13, name: "Framer Motion", category: "Frontend", proficiency: "Advanced" },
+  { id: 14, name: "GraphQL", category: "Frontend", proficiency: "Intermediate" },
 
-  // Database
-  { id: 21, name: "PostgreSQL", category: "Database", proficiency: "Advance" },
-  { id: 22, name: "MySQL", category: "Database", proficiency: "Advance" },
-  { id: 23, name: "MongoDB", category: "Database", proficiency: "Advance" },
-  { id: 24, name: "Redis", category: "Database", proficiency: "Intermediate" },
-  { id: 25, name: "Firebase", category: "Database", proficiency: "Advance" },
-  { id: 26, name: "Prisma", category: "Database", proficiency: "Intermediate" },
+  // Backend
+  { id: 15, name: "Node.js", category: "Backend", proficiency: "Advanced" },
+  { id: 16, name: "NestJS", category: "Backend", proficiency: "Advanced" },
+  { id: 17, name: "Express.js", category: "Backend", proficiency: "Advanced" },
+  { id: 18, name: "FastAPI", category: "Backend", proficiency: "Advanced" },
+  { id: 19, name: "REST APIs", category: "Backend", proficiency: "Advanced" },
 
   // Mobile
-  { id: 27, name: "React Native", category: "Mobile", proficiency: "Advance" },
-  { id: 28, name: "Flutter", category: "Mobile", proficiency: "Intermediate" },
-  { id: 29, name: "Ionic", category: "Mobile", proficiency: "Advance" },
+  { id: 20, name: "React Native", category: "Mobile", proficiency: "Advanced" },
+  { id: 21, name: "Flutter", category: "Mobile", proficiency: "Advanced" },
+  { id: 22, name: "Expo", category: "Mobile", proficiency: "Advanced" },
+  { id: 23, name: "Ionic", category: "Mobile", proficiency: "Advanced" },
 
-  // Web3 (Solana)
-  { id: 32, name: "Solana", category: "Web3", proficiency: "Intermediate" },
-  { id: 33, name: "Rust", category: "Web3", proficiency: "Intermediate" },
-  { id: 34, name: "Anchor", category: "Web3", proficiency: "Intermediate" },
-  {
-    id: 35,
-    name: "@solana/web3.js",
-    category: "Web3",
-    proficiency: "Intermediate",
-  },
-  {
-    id: 36,
-    name: "Smart Contracts",
-    category: "Web3",
-    proficiency: "Intermediate",
-  },
-  { id: 37, name: "SPL Tokens", category: "Web3", proficiency: "Intermediate" },
-  {
-    id: 38,
-    name: "Phantom Wallet",
-    category: "Web3",
-    proficiency: "Intermediate",
-  },
-  { id: 39, name: "Metaplex", category: "Web3", proficiency: "Beginner" },
+  // Databases
+  { id: 24, name: "PostgreSQL", category: "Databases", proficiency: "Advanced" },
+  { id: 25, name: "MongoDB", category: "Databases", proficiency: "Advanced" },
+  { id: 26, name: "MySQL", category: "Databases", proficiency: "Advanced" },
+  { id: 27, name: "Redis", category: "Databases", proficiency: "Advanced" },
 
-  // DevOps & Tools
-  { id: 40, name: "Git", category: "DevOps & Tools", proficiency: "Advance" },
-  {
-    id: 41,
-    name: "Docker",
-    category: "DevOps & Tools",
-    proficiency: "Intermediate",
-  },
-  {
-    id: 42,
-    name: "Kubernetes",
-    category: "DevOps & Tools",
-    proficiency: "Beginner",
-  },
-  {
-    id: 43,
-    name: "AWS",
-    category: "DevOps & Tools",
-    proficiency: "Intermediate",
-  },
-  {
-    id: 44,
-    name: "CI/CD",
-    category: "DevOps & Tools",
-    proficiency: "Intermediate",
-  },
-  { id: 45, name: "Jira", category: "DevOps & Tools", proficiency: "Advance" },
-  {
-    id: 46,
-    name: "Postman",
-    category: "DevOps & Tools",
-    proficiency: "Advance",
-  },
+  // Cloud & DevOps
+  { id: 28, name: "AWS (ECS/Lambda/RDS/S3/CloudFront/Cognito)", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 29, name: "Docker", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 30, name: "GitHub Actions", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 31, name: "CloudWatch", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 32, name: "SQS/SNS/EventBridge", category: "Cloud & DevOps", proficiency: "Advanced" },
+
+  // Blockchain
+  { id: 33, name: "Solana", category: "Blockchain", proficiency: "Advanced" },
+  { id: 34, name: "Anchor", category: "Blockchain", proficiency: "Advanced" },
+  { id: 35, name: "Smart Contracts", category: "Blockchain", proficiency: "Advanced" },
+  { id: 36, name: "IPFS", category: "Blockchain", proficiency: "Advanced" },
+  { id: 37, name: "Web3 Wallet Integrations", category: "Blockchain", proficiency: "Advanced" },
+
+  // Tools
+  { id: 38, name: "Git", category: "Tools", proficiency: "Advanced" },
+  { id: 39, name: "Postman", category: "Tools", proficiency: "Advanced" },
+  { id: 40, name: "Jira", category: "Tools", proficiency: "Advanced" },
+  { id: 41, name: "Figma", category: "Tools", proficiency: "Advanced" },
 ];
 
 export const experience: Experience[] = [
   {
     id: 1,
     role: "Senior Software Engineer & Blockchain Developer",
-    company: "Apium Innovation(Pvt) Ltd",
-    period: "October 2023 - Present",
+    company: "Apium Innovation (Pvt) Ltd",
+    period: "2023 - Present",
+    highlights: [
+      "Architect and deliver full-stack web, mobile, and AI-powered systems in production.",
+      "Build LLM-integrated platforms with real-time streaming responses and structured pipelines.",
+      "Design and operate AWS cloud-native infrastructure with Docker-based CI/CD.",
+      "Lead technical planning and mentor junior engineers across fintech, healthcare, and automotive domains.",
+    ],
   },
   {
     id: 2,
     role: "Senior Software Engineer",
-    company: "CyberStorm Asia(Pvt) Ltd",
-    period: "August 2022 - August 2023",
+    company: "CyberStorm Asia (Pvt) Ltd",
+    period: "2022 - 2023",
+    highlights: [
+      "Engineered scalable backend APIs and responsive frontend systems for enterprise clients.",
+      "Contributed to architecture reviews and technical roadmap planning across concurrent projects.",
+    ],
   },
   {
     id: 3,
-    role: "Software Engineer & Saleforce Developer",
-    company: "Apium Innovation(Pvt) Ltd",
-    period: "July 2018 - August 2022",
+    role: "Software Engineer & Salesforce Developer",
+    company: "Apium Innovation (Pvt) Ltd",
+    period: "2018 - 2022",
+    highlights: [
+      "Delivered full-stack web platforms and Salesforce CRM customizations.",
+      "Built client systems for fintech, logistics, and enterprise workflows.",
+    ],
   },
   {
     id: 4,
-    role: "Front-end Developer",
+    role: "Front-End Developer",
     company: "Productive Media",
-    period: "September 2018 - December 2019",
+    period: "2018 - 2019",
   },
   {
     id: 5,
-    role: "IT Teacher",
-    company: "Lak Aruna Foundation",
-    period: "June 2016 - April 2017",
-  },
-  {
-    id: 6,
-    role: "Former Web Developer",
-    company: "CodeGen International(Pvt) Ltd",
-    period: "Jan 2013 - May 2013",
+    role: "Engineering Intern",
+    company: "CodeGen International",
+    period: "2013",
   },
 ];
 
 export const projects: Project[] = [
   {
     id: 1,
+    title: "AI Vehicle Analysis & Valuation System",
+    description:
+      "Architected an AI-driven valuation platform combining LLM analysis with live MMR and KBB/Bluebook data, real-time streaming output, and an interactive insights dashboard.",
+    technologies: ["Node.js", "React", "LLM APIs", "Streaming"],
+    link: "#",
+    imageUrl: "/images/reference-image-1.jpg",
+  },
+  {
+    id: 2,
+    title: "AMC PrepPro - Medical Exam App",
+    description:
+      "Built a full-featured iOS/Android study app with QBank workflows, timed 150-question mock exams, performance analytics, and an offline-first data layer.",
+    technologies: ["React Native", "Expo", "Node.js"],
+    link: "#",
+    imageUrl: "/images/reference-image-1.jpg",
+  },
+  {
+    id: 3,
+    title: "Asia Securities - Client Investment Portal",
+    description:
+      "Delivered a secure investment portal with real-time dashboards, account workflows, and transaction flows using Cognito auth, ECS deployment, and CloudWatch monitoring.",
+    technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
+    link: "#",
+    imageUrl: "/images/reference-image-1.jpg",
+  },
+  {
+    id: 4,
+    title: "POAP Platform - Solana NFT Minting System",
+    description:
+      "Engineered event-triggered Solana NFT minting with multi-wallet support, IPFS metadata pipelines, and a React-based claim experience.",
+    technologies: ["Solana", "Anchor", "React", "TypeScript", "IPFS"],
+    link: "#",
+    imageUrl: "/images/59355f751c1e3698cc6360b1a7390094.jpg",
+  },
+  {
+    id: 5,
     title: "Australian Carpentry Service Web",
     description:
       "Developed an Australian Carpentry Service website using Next.js within a week.",
@@ -190,7 +177,7 @@ export const projects: Project[] = [
     imageUrl: "/images/tlt.png",
   },
   {
-    id: 2,
+    id: 6,
     title: "Sri Lanka and Australia News Web",
     description:
       "Collaborated on the development of a news website for Sri Lanka and Australia, using React.js and Node.js.",
@@ -199,25 +186,25 @@ export const projects: Project[] = [
     imageUrl: "/images/newsz.png",
   },
   {
-    id: 3,
+    id: 7,
     title: "Moonstorm Ecommerce WordPress Website",
     description:
       "Built an ecommerce website using WordPress for selling jewelries.",
     technologies: ["WordPress"],
     link: "https://www.moonstorm.com/",
-    imageUrl: "/images/reference-image-1.jpg",
+    imageUrl: "/images/moonstorm.png",
   },
   {
-    id: 4,
+    id: 8,
     title: "Furgonetka Courier Delivery Service",
     description:
       "Developed a courier delivery service using PHP, JavaScript, and MySQL.",
     technologies: ["PHP", "JavaScript", "MySQL"],
-    link: "#",
-    imageUrl: "/images/reference-image-2.jpg",
+    link: "https://furgonetka.pl/",
+    imageUrl: "/images/furgonetka.png",
   },
   {
-    id: 5,
+    id: 9,
     title: "Apium.io Company Website",
     description:
       "Built the Apium company website using WordPress within one week.",
@@ -226,7 +213,7 @@ export const projects: Project[] = [
     imageUrl: "/images/59355f751c1e3698cc6360b1a7390094.jpg",
   },
   {
-    id: 6,
+    id: 10,
     title: "Kamuda Food App",
     description:
       "Participated in the development of a food delivery application for Sri Lanka, creating web applications using Angular, Node, and MongoDB.",
@@ -235,7 +222,7 @@ export const projects: Project[] = [
     imageUrl: "/images/kamuda.jpg",
   },
   {
-    id: 7,
+    id: 11,
     title: "Essex Aesthetics Website",
     description:
       "Developed a static website for a skincare treatment business using HTML, CSS, and JavaScript. Completed within three weeks.",
@@ -244,7 +231,7 @@ export const projects: Project[] = [
     imageUrl: "/images/essex.jpg",
   },
   {
-    id: 8,
+    id: 12,
     title: "SEO Fulham Web",
     description:
       "Created a static website for an SEO agency using HTML, CSS, and JavaScript. Completed within one week.",
@@ -253,7 +240,7 @@ export const projects: Project[] = [
     imageUrl: "/images/seofulham.jpg",
   },
   {
-    id: 9,
+    id: 13,
     title: "ChattyBunny Application",
     description:
       "Developed a real-time chat application with modern UI/UX using React and Node.js.",
@@ -262,7 +249,7 @@ export const projects: Project[] = [
     imageUrl: "/images/chattybunny.png",
   },
   {
-    id: 10,
+    id: 14,
     title: "Car Rental Service",
     description:
       "Built a car rental booking platform with payment integration using modern web technologies.",

@@ -60,7 +60,7 @@ export function Contact() {
           <div className="bg-card p-8 rounded-3xl border border-border shadow-lg">
             <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
             <p className="text-muted-foreground mb-8">
-              I am currently available for freelance work or full-time opportunities.
+              Available for senior full-stack and AI-focused engineering roles.
             </p>
             
             <div className="space-y-6">
@@ -70,11 +70,11 @@ export function Contact() {
               </div>
               <div>
                 <label className="text-xs font-bold text-primary uppercase tracking-wider">Phone</label>
-                <p className="text-lg font-medium">+94 71-4669-150</p>
+                <p className="text-lg font-medium">Available on request</p>
               </div>
               <div>
-                <label className="text-xs font-bold text-primary uppercase tracking-wider">Address</label>
-                <p className="text-lg font-medium">Hingurukaduwa, Passara</p>
+                <label className="text-xs font-bold text-primary uppercase tracking-wider">Location</label>
+                <p className="text-lg font-medium">Colombo, Sri Lanka</p>
               </div>
             </div>
           </div>
