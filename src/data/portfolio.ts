@@ -63,24 +63,32 @@ export const skills: Skill[] = [
   { id: 27, name: "Redis", category: "Databases", proficiency: "Advanced" },
 
   // Cloud & DevOps
-  { id: 28, name: "AWS (ECS/Lambda/RDS/S3/CloudFront/Cognito)", category: "Cloud & DevOps", proficiency: "Advanced" },
-  { id: 29, name: "Docker", category: "Cloud & DevOps", proficiency: "Advanced" },
-  { id: 30, name: "GitHub Actions", category: "Cloud & DevOps", proficiency: "Advanced" },
-  { id: 31, name: "CloudWatch", category: "Cloud & DevOps", proficiency: "Advanced" },
-  { id: 32, name: "SQS/SNS/EventBridge", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 28, name: "AWS", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 29, name: "ECS", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 30, name: "Lambda", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 31, name: "RDS/Aurora", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 32, name: "S3", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 33, name: "CloudFront", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 34, name: "Cognito", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 35, name: "SQS", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 36, name: "SNS", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 37, name: "EventBridge", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 38, name: "CloudWatch", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 39, name: "Docker", category: "Cloud & DevOps", proficiency: "Advanced" },
+  { id: 40, name: "GitHub Actions", category: "Cloud & DevOps", proficiency: "Advanced" },
 
   // Blockchain
-  { id: 33, name: "Solana", category: "Blockchain", proficiency: "Advanced" },
-  { id: 34, name: "Anchor", category: "Blockchain", proficiency: "Advanced" },
-  { id: 35, name: "Smart Contracts", category: "Blockchain", proficiency: "Advanced" },
-  { id: 36, name: "IPFS", category: "Blockchain", proficiency: "Advanced" },
-  { id: 37, name: "Web3 Wallet Integrations", category: "Blockchain", proficiency: "Advanced" },
+  { id: 41, name: "Solana", category: "Blockchain", proficiency: "Advanced" },
+  { id: 42, name: "Anchor", category: "Blockchain", proficiency: "Advanced" },
+  { id: 43, name: "Smart Contracts", category: "Blockchain", proficiency: "Advanced" },
+  { id: 44, name: "IPFS", category: "Blockchain", proficiency: "Advanced" },
+  { id: 45, name: "Web3 Wallet Integrations", category: "Blockchain", proficiency: "Advanced" },
 
   // Tools
-  { id: 38, name: "Git", category: "Tools", proficiency: "Advanced" },
-  { id: 39, name: "Postman", category: "Tools", proficiency: "Advanced" },
-  { id: 40, name: "Jira", category: "Tools", proficiency: "Advanced" },
-  { id: 41, name: "Figma", category: "Tools", proficiency: "Advanced" },
+  { id: 46, name: "Git", category: "Tools", proficiency: "Advanced" },
+  { id: 47, name: "Postman", category: "Tools", proficiency: "Advanced" },
+  { id: 48, name: "Jira", category: "Tools", proficiency: "Advanced" },
+  { id: 49, name: "Figma", category: "Tools", proficiency: "Advanced" },
 ];
 
 export const experience: Experience[] = [
@@ -173,7 +181,7 @@ export const projects: Project[] = [
     description:
       "Developed an Australian Carpentry Service website using Next.js within a week.",
     technologies: ["Next.js"],
-    link: "https://tltcarpentry.com.au/",
+    link: "#",
     imageUrl: "/images/tlt.png",
   },
   {
@@ -191,7 +199,7 @@ export const projects: Project[] = [
     description:
       "Built an ecommerce website using WordPress for selling jewelries.",
     technologies: ["WordPress"],
-    link: "https://www.moonstorm.com/",
+    link: "#",
     imageUrl: "/images/moonstorm.png",
   },
   {
@@ -200,7 +208,7 @@ export const projects: Project[] = [
     description:
       "Developed a courier delivery service using PHP, JavaScript, and MySQL.",
     technologies: ["PHP", "JavaScript", "MySQL"],
-    link: "https://furgonetka.pl/",
+    link: "#",
     imageUrl: "/images/furgonetka.png",
   },
   {
@@ -209,7 +217,7 @@ export const projects: Project[] = [
     description:
       "Built the Apium company website using WordPress within one week.",
     technologies: ["WordPress"],
-    link: "https://www.apium.io/",
+    link: "#",
     imageUrl: "/images/59355f751c1e3698cc6360b1a7390094.jpg",
   },
   {

@@ -66,11 +66,13 @@ export function Contact() {
             <div className="space-y-6">
               <div>
                 <label className="text-xs font-bold text-primary uppercase tracking-wider">Email</label>
-                <p className="text-lg font-medium">tharindud02@gmail.com</p>
+                <a href="mailto:tharindud02@gmail.com" className="text-lg font-medium hover:underline block">tharindud02@gmail.com</a>
               </div>
               <div>
                 <label className="text-xs font-bold text-primary uppercase tracking-wider">Phone</label>
-                <p className="text-lg font-medium">Available on request</p>
+                <a href="tel:+94714669150" className="text-lg font-medium hover:underline block">+94 71 466 9150</a>
+                <a href="tel:+94723309695" className="text-lg font-medium hover:underline block">+94 72 330 9695</a>
+           
               </div>
               <div>
                 <label className="text-xs font-bold text-primary uppercase tracking-wider">Location</label>
