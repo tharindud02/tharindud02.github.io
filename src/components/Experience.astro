@@ -4,51 +4,180 @@ import { experience } from "@/data/portfolio";
 ---
 
 <Section id="experience" title="Work Experience" subtitle="My professional journey">
-  <div class="relative max-w-5xl mx-auto">
-    <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border/60 -translate-x-1/2" aria-hidden="true"></div>
-    <ol class="space-y-12 list-none p-0 m-0">
-      {
-        experience.map((exp, idx) => (
-          <li
-            class={`relative flex flex-col md:flex-row items-center gap-8 reveal ${idx % 2 === 0 ? "md:flex-row-reverse" : ""}`}
-            style={`transition-delay:${idx * 50}ms`}
+  <ol id="experience-timeline" class="relative max-w-3xl mx-auto list-none p-0 m-0">
+    <div class="absolute left-[15px] sm:left-5 top-2 bottom-2 w-px bg-gradient-to-b from-primary/60 via-border to-transparent" aria-hidden="true"></div>
+
+    <!-- Single moving indicator (replaces per-card dots) -->
+    <div
+      id="timeline-indicator"
+      class="absolute left-0 sm:left-1 top-0 w-8 h-8 rounded-full border-4 border-background bg-primary shadow-lg shadow-primary/40 pointer-events-none will-change-transform"
+      aria-hidden="true"
+      style="transform: translateY(0px);"
+    >
+      <span class="block w-2.5 h-2.5 rounded-full bg-primary-foreground animate-pulse mx-auto mt-1.5" />
+    </div>
+    <div
+      id="timeline-period"
+      class="absolute left-[44px] sm:left-14 top-2 px-3 py-1 rounded-full bg-secondary/60 border border-border/50 text-xs font-semibold text-muted-foreground backdrop-blur-sm pointer-events-none opacity-100 transition-opacity duration-200 ease-out"
+      aria-live="polite"
+    >
+      {experience[0]?.period}
+    </div>
+
+    {
+      experience.map((exp, idx) => (
+        <li
+          data-period={exp.period}
+          data-exp-index={idx}
+          class="relative pl-10 sm:pl-14 pb-12 last:pb-0 reveal"
+          style={`transition-delay:${idx * 60}ms`}
+        >
+          <article
+            class={`group rounded-3xl border border-border/60 bg-card/50 backdrop-blur-xl p-6 sm:p-7 transition-[transform,box-shadow,border-color,background-color,opacity] duration-300 ease-out will-change-transform ${
+              idx === 0 ? "timeline-active-card scale-[1.03] border-primary/60 bg-card/80 shadow-lg shadow-primary/10 opacity-100" : "opacity-95"
+            }`}
           >
-            <div class="absolute left-8 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20" aria-hidden="true">
-              <div class="w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg shadow-primary/40"></div>
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+              <h3 class="text-xl sm:text-2xl font-bold font-display text-foreground">{exp.role}</h3>
+              <span class="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-secondary/50 border border-border/50 px-3 py-1 rounded-full">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+                <time>{exp.period}</time>
+              </span>
             </div>
 
-            <div class={`flex-1 ${idx % 2 === 0 ? "md:pr-10" : "md:pl-10"} ml-16 md:ml-0`}>
-              <article
-                class={`bg-background/50 backdrop-blur-xl p-6 rounded-3xl border border-border/60 hover:border-primary/40 transition-colors ${idx % 2 === 0 ? "md:text-left" : "md:text-right"}`}
-              >
-                <h3 class="text-xl font-bold text-foreground">{exp.role}</h3>
-                <p class={`mt-2 mb-4 text-sm text-muted-foreground inline-flex items-center gap-2 ${idx % 2 === 0 ? "" : "md:justify-end md:w-full"}`}>
-                  <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="2" y="7" width="20" height="14" rx="2"></rect>
-                    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
-                  </svg>
-                  <span>{exp.company}</span>
-                </p>
-                <p class={`inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full text-xs font-medium text-primary ${idx % 2 === 0 ? "" : "md:ml-auto"}`}>
-                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-                    <path d="M16 2v4M8 2v4M3 10h18"></path>
-                  </svg>
-                  <time>{exp.period}</time>
-                </p>
-                {exp.highlights && exp.highlights.length > 0 && (
-                  <ul class={`mt-4 space-y-2 text-sm text-muted-foreground ${idx % 2 === 0 ? "" : "md:text-right md:list-inside"}`}>
-                    {exp.highlights.map((highlight) => (
-                      <li class="leading-relaxed">{highlight}</li>
-                    ))}
-                  </ul>
-                )}
-              </article>
-            </div>
-            <div class="hidden md:block flex-1" aria-hidden="true"></div>
-          </li>
-        ))
+            <p class="text-primary font-semibold mb-4">{exp.company}</p>
+
+            {exp.highlights && exp.highlights.length > 0 && (
+              <ul class="space-y-2.5 list-none p-0 m-0">
+                {exp.highlights.map((highlight) => (
+                  <li class="flex gap-3 text-sm sm:text-[15px] text-muted-foreground leading-relaxed">
+                    <svg class="w-4 h-4 shrink-0 mt-0.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+
+  <script>
+    const timeline = document.getElementById("experience-timeline");
+    const indicator = document.getElementById("timeline-indicator");
+    const periodEl = document.getElementById("timeline-period");
+
+    if (timeline && indicator && periodEl) {
+      const items = Array.from(timeline.querySelectorAll("li[data-exp-index]"));
+      if (items.length > 0) {
+        const prefersReduced =
+          window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const dotSize = 32; // Tailwind w-8/h-8
+        let activeIndex = 0;
+        let rafId = 0;
+
+        const setActiveCard = (nextIndex) => {
+          if (nextIndex < 0 || nextIndex >= items.length) return;
+          if (nextIndex === activeIndex) return;
+
+          const prevLi = items[activeIndex];
+          const nextLi = items[nextIndex];
+          const prevCard = prevLi ? prevLi.querySelector("article") : null;
+          const nextCard = nextLi ? nextLi.querySelector("article") : null;
+          if (!prevCard || !nextCard) {
+            activeIndex = nextIndex;
+            return;
+          }
+
+          prevCard.classList.remove(
+            "timeline-active-card",
+            "scale-[1.03]",
+            "border-primary/60",
+            "bg-card/80",
+            "shadow-lg",
+            "shadow-primary/10",
+            "opacity-100",
+          );
+          prevCard.classList.add("opacity-95");
+
+          nextCard.classList.add(
+            "timeline-active-card",
+            "scale-[1.03]",
+            "border-primary/60",
+            "bg-card/80",
+            "shadow-lg",
+            "shadow-primary/10",
+            "opacity-100",
+          );
+          nextCard.classList.remove("opacity-95");
+
+          periodEl.style.opacity = "0";
+          window.setTimeout(() => {
+            periodEl.textContent = nextLi.getAttribute("data-period") ?? "";
+            periodEl.style.opacity = "1";
+          }, prefersReduced ? 0 : 120);
+
+          activeIndex = nextIndex;
+        };
+
+        const setIndicatorPosition = (index) => {
+          const li = items[index];
+          if (!li) return;
+
+          const itemRect = li.getBoundingClientRect();
+          const timelineRect = timeline.getBoundingClientRect();
+
+          const centerY = itemRect.top - timelineRect.top + itemRect.height / 2;
+          const translateY = Math.round(centerY - dotSize / 2);
+          indicator.style.transform = `translateY(${translateY}px)`;
+        };
+
+        const update = () => {
+          rafId = 0;
+          const viewportMid = window.innerHeight * 0.5;
+
+          const timelineRect = timeline.getBoundingClientRect();
+          // If timeline isn't on screen yet, avoid jitter.
+          if (timelineRect.bottom < 0 || timelineRect.top > window.innerHeight) return;
+
+          let bestIndex = activeIndex;
+          let bestDist = Number.POSITIVE_INFINITY;
+
+          for (let i = 0; i < items.length; i++) {
+            const li = items[i];
+            const r = li.getBoundingClientRect();
+            const center = r.top + r.height / 2;
+            const dist = Math.abs(center - viewportMid);
+            if (dist < bestDist) {
+              bestDist = dist;
+              bestIndex = i;
+            }
+          }
+
+          setActiveCard(bestIndex);
+          setIndicatorPosition(bestIndex);
+        };
+
+        const schedule = () => {
+          if (rafId !== 0) return;
+          rafId = window.requestAnimationFrame(update);
+        };
+
+        // smooth indicator movement while scrolling
+        window.addEventListener("scroll", schedule, { passive: true });
+        window.addEventListener("resize", schedule, { passive: true });
+
+        indicator.style.transition = prefersReduced ? "none" : "transform 120ms ease-out";
+
+        update();
       }
-    </ol>
-  </div>
+    }
+  </script>
 </Section>

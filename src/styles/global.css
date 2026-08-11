@@ -19,8 +19,8 @@
   --border: 217 33% 22%;
   --input: 217 33% 22%;
   --ring: 158 64% 42%;
-  --font-body: "Inter Variable", system-ui, sans-serif;
-  --font-display: "Outfit Variable", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", system-ui, sans-serif;
 }
 
 .light {

@@ -1,6 +1,6 @@
 ---
-import interWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
-import outfitWoff2 from "@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url";
+import jakartaWoff2 from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
+import spaceGroteskWoff2 from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
 import "@/styles/fonts.css";
 import "@/styles/global.css";
 import { site } from "@/data/portfolio";
@@ -39,8 +39,8 @@ const ogImage = new URL("/og-image.jpg", site.url).href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="preload" href={interWoff2} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={outfitWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jakartaWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={spaceGroteskWoff2} as="font" type="font/woff2" crossorigin />
     {preloadImage && (
       <link
         rel="preload"

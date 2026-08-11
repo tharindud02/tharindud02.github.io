@@ -1,105 +1,31 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
 import Section from "./Section.astro";
-import { projects } from "@/data/portfolio";
+import ProjectCard from "./ProjectCard.astro";
+import { projects, additionalProjects } from "@/data/portfolio";
 
-import placeholder from "@/assets/images/placeholder.webp";
-import poap from "@/assets/images/poap.webp";
-import tlt from "@/assets/images/tlt.webp";
-import newsz from "@/assets/images/newsz.webp";
-import furgonetka from "@/assets/images/furgonetka.webp";
-import kamuda from "@/assets/images/kamuda.webp";
-import essex from "@/assets/images/essex.webp";
-import seofulham from "@/assets/images/seofulham.webp";
-import chattybunny from "@/assets/images/chattybunny.webp";
-import chcarrental from "@/assets/images/chcarrental.webp";
-
-const imageMap: Record<string, ImageMetadata> = {
-  placeholder,
-  poap,
-  tlt,
-  newsz,
-  furgonetka,
-  kamuda,
-  essex,
-  seofulham,
-  chattybunny,
-  chcarrental,
-};
-
-function isValidProjectLink(link: string): boolean {
-  const normalized = link.trim();
-  if (!normalized || normalized === "#") return false;
-  try {
-    const parsed = new URL(normalized);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
+const sorted = [...projects].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
 ---
 
 <Section
   id="projects"
   title="Featured Projects"
-  subtitle="Selected production systems across AI, fintech, mobile, and Web3"
+  subtitle="Production systems across AI, SaaS, mobile, and Web3, shipped end-to-end"
 >
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-    {
-      projects.map((project, idx) => {
-        const image = imageMap[project.image] ?? placeholder;
-        const hasValidLink = isValidProjectLink(project.link);
-
-        return (
-          <article
-            class="group bg-background/40 backdrop-blur-xl rounded-3xl overflow-hidden border border-border/60 hover:border-primary/40 transition-colors flex flex-col h-full reveal"
-            style={`transition-delay:${(idx % 6) * 40}ms`}
-          >
-            <div class="relative h-44 overflow-hidden bg-secondary/30">
-              <Image
-                src={image}
-                alt={`${project.title} project screenshot`}
-                widths={[400, 640]}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                width={640}
-                height={360}
-                format="webp"
-                quality={75}
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
-              <p class="text-muted-foreground text-sm mb-5 flex-1 leading-relaxed line-clamp-3">{project.description}</p>
-              <ul class="flex flex-wrap gap-2 mb-5 list-none p-0 m-0">
-                {project.technologies.map((tech) => (
-                  <li class="px-3 py-1 text-xs font-medium bg-secondary/50 text-secondary-foreground rounded-full border border-border/50">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-              {hasValidLink && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline mt-auto"
-                >
-                  Visit Website
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <path d="M15 3h6v6"></path>
-                    <path d="m10 14 11-11"></path>
-                  </svg>
-                </a>
-              )}
-            </div>
-          </article>
-        );
-      })
-    }
+    {sorted.map((project, idx) => <ProjectCard project={project} delayMs={(idx % 6) * 40} />)}
   </div>
+
+  {
+    additionalProjects.length > 0 && (
+      <div class="mt-20 reveal">
+        <header class="mb-10 md:mb-14">
+          <h3 class="text-3xl md:text-4xl font-bold font-display mb-3 text-gradient">Additional Work</h3>
+          <p class="text-muted-foreground max-w-2xl">Earlier client and agency projects across web and ecommerce.</p>
+        </header>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {additionalProjects.map((project, idx) => <ProjectCard project={project} delayMs={(idx % 6) * 40} />)}
+        </div>
+      </div>
+    )
+  }
 </Section>

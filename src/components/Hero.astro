@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import portfolioImage from "@/assets/images/portfolio.webp";
-import { site } from "@/data/portfolio";
+import { site, stack } from "@/data/portfolio";
 ---
 
 <section id="hero" class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
@@ -27,11 +27,21 @@ import { site } from "@/data/portfolio";
           <span class="text-muted-foreground">Damith.</span>
         </h1>
         <p class="text-lg sm:text-xl text-muted-foreground max-w-lg leading-relaxed">
-          Senior Software Engineer focused on
-          <span class="text-foreground font-semibold">Full-Stack & AI Systems</span>
-          with 8+ years shipping production-grade products.
+          Senior Full-Stack Engineer building
+          <span class="text-foreground font-semibold">web, mobile, and AI-powered products</span>,
+          from Next.js platforms to LLM pipelines, n8n automations, and Solana smart contracts. 8+ years shipping production systems.
         </p>
       </div>
+
+      <ul class="flex flex-wrap gap-2.5 list-none p-0 m-0 max-w-xl" aria-label="Core technologies">
+        {
+          stack.map((item) => (
+            <li class="px-3.5 py-1.5 text-xs sm:text-sm font-medium bg-secondary/40 text-secondary-foreground rounded-full border border-border/50">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
 
       <div class="flex flex-wrap gap-4">
         <a
