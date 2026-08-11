@@ -339,9 +339,10 @@ export const additionalProjects: Project[] = [
   {
     id: 21,
     title: "Apium.io Company Website",
-    description: "Corporate website for Apium Innovation, built and launched within one week.",
-    technologies: ["WordPress"],
-    link: "#",
+    description:
+      "Designed and delivered Apium Innovation’s corporate website with a clean, conversion-focused structure built with React and Tailwind CSS, reviewed, and launched.",
+    technologies: ["React"],
+    link: "https://apium.io/",
     category: "Web Project",
     platform: "Web",
     status: "Completed",
