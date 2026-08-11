@@ -1,88 +1,26 @@
-# Portfolio - Next.js Version
+# Portfolio — Astro
 
-A modern, high-end personal portfolio website built with Next.js, React, and Tailwind CSS. Optimized for Vercel deployment.
+Static personal portfolio rebuilt in Astro for near-zero JS and Lighthouse-oriented performance.
 
-## Features
+## Stack
 
-- 🎨 Modern, premium UI with glassmorphic effects
-- 🌓 Dark/Light theme toggle
-- ✨ Smooth animations with Framer Motion
-- 🎯 Particle background effects
-- 📱 Fully responsive design
-- ⚡ Optimized for performance with Next.js
+- Astro 5 (static output)
+- Tailwind CSS
+- Self-hosted variable fonts (Inter + Outfit)
+- Sharp image pipeline (WebP)
 
-## Tech Stack
-
-- **Framework**: Next.js 14
-- **UI Library**: React 18
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Theme**: next-themes
-- **Icons**: Lucide React
-
-## Getting Started
-
-### Installation
+## Commands
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
+npm run optimize:images   # regenerate optimized WebP assets
 npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build
-
-```bash
 npm run build
+npm run preview
 ```
 
-### Start Production Server
+## Deploy
 
-```bash
-npm start
-```
+GitHub Actions builds `dist/` and deploys to GitHub Pages on push to `main`/`master`.
 
-## Deployment to Vercel
-
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Vercel will automatically detect Next.js and configure the build
-4. Your site will be deployed automatically
-
-### Vercel Configuration
-
-The project includes a `vercel.json` file with optimal settings for Vercel deployment.
-
-## Project Structure
-
-```
-portfolio-me-main/
-├── src/
-│   ├── app/              # Next.js app router
-│   │   ├── layout.tsx    # Root layout
-│   │   ├── page.tsx      # Home page
-│   │   └── globals.css   # Global styles
-│   ├── components/       # React components
-│   ├── data/             # Static data
-│   ├── hooks/            # Custom hooks
-│   └── lib/              # Utilities
-├── public/               # Static assets
-├── next.config.js        # Next.js configuration
-└── package.json          # Dependencies
-```
-
-## Notes
-
-- The build may show warnings during static generation, but the app works correctly in development and production
-- All components are client-side rendered for optimal interactivity
-- Theme preference is stored in localStorage
-
-## License
-
-MIT
+Site URL: https://tharindud02.github.io

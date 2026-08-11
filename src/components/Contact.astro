@@ -1,0 +1,151 @@
+---
+import Section from "./Section.astro";
+import { site } from "@/data/portfolio";
+---
+
+<Section id="contact" title="Get In Touch" subtitle="Have a project in mind? Let's discuss.">
+  <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+    <aside class="bg-card p-8 rounded-3xl border border-border shadow-sm reveal" aria-label="Contact information">
+      <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+      <p class="text-muted-foreground mb-8">Available for senior full-stack and AI-focused engineering roles.</p>
+      <div class="space-y-6">
+        <div>
+          <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Email</p>
+          <a href={`mailto:${site.email}`} class="text-lg font-medium hover:underline">{site.email}</a>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Phone</p>
+          {
+            site.phone.map((phone) => (
+              <a href={`tel:${phone}`} class="text-lg font-medium hover:underline block">
+                {phone.replace("+94", "+94 ").replace(/(\d{2})(\d{3})(\d{4})$/, "$1 $2 $3")}
+              </a>
+            ))
+          }
+        </div>
+        <div>
+          <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Location</p>
+          <p class="text-lg font-medium">{site.location}</p>
+        </div>
+      </div>
+    </aside>
+
+    <form
+      id="contact-form"
+      class="space-y-5 bg-card p-8 rounded-3xl border border-border shadow-sm reveal"
+      style="transition-delay:80ms"
+      novalidate
+    >
+      <div>
+        <label for="name" class="block text-sm font-medium mb-2">Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+          minlength="2"
+          class="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+          placeholder="John Doe"
+        />
+        <p id="name-error" class="text-red-600 dark:text-red-400 text-sm mt-1 hidden" role="alert"></p>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium mb-2">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          class="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+          placeholder="john@example.com"
+        />
+        <p id="email-error" class="text-red-600 dark:text-red-400 text-sm mt-1 hidden" role="alert"></p>
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium mb-2">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          minlength="10"
+          class="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
+          placeholder="Tell me about your project..."
+        ></textarea>
+        <p id="message-error" class="text-red-600 dark:text-red-400 text-sm mt-1 hidden" role="alert"></p>
+      </div>
+
+      <p id="form-status" class="text-sm text-muted-foreground hidden" role="status" aria-live="polite"></p>
+
+      <button
+        type="submit"
+        class="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:opacity-95 transition-opacity inline-flex items-center justify-center gap-2"
+      >
+        Send Message
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m22 2-7 20-4-9-9-4Z"></path>
+          <path d="M22 2 11 13"></path>
+        </svg>
+      </button>
+    </form>
+  </div>
+</Section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  if (form) {
+    const showError = (id: string, message: string) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = message;
+      el.classList.toggle("hidden", !message);
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get("name") ?? "").trim();
+      const email = String(data.get("email") ?? "").trim();
+      const message = String(data.get("message") ?? "").trim();
+
+      let valid = true;
+      if (name.length < 2) {
+        showError("name-error", "Name must be at least 2 characters");
+        valid = false;
+      } else {
+        showError("name-error", "");
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError("email-error", "Please enter a valid email address");
+        valid = false;
+      } else {
+        showError("email-error", "");
+      }
+
+      if (message.length < 10) {
+        showError("message-error", "Message must be at least 10 characters");
+        valid = false;
+      } else {
+        showError("message-error", "");
+      }
+
+      if (!valid) return;
+
+      const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      window.location.href = `mailto:tharindud02@gmail.com?subject=${subject}&body=${body}`;
+
+      const status = document.getElementById("form-status");
+      if (status) {
+        status.textContent = "Opening your email client with the message drafted.";
+        status.classList.remove("hidden");
+      }
+      form.reset();
+    });
+  }
+</script>

@@ -1,0 +1,164 @@
+---
+const navItems = [
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300"
+>
+  <div class="container mx-auto px-4 flex items-center justify-between">
+    <a href="#hero" class="text-2xl font-bold font-display tracking-tighter" aria-label="Go to top">
+      <span class="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">TD</span>
+      <span class="text-primary" aria-hidden="true">.</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+      <a
+        href="#contact"
+        class="px-5 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+      >
+        Hire Me
+      </a>
+      <button
+        type="button"
+        id="theme-toggle"
+        class="w-11 h-11 rounded-full inline-flex items-center justify-center border border-border/60 bg-background/60 hover:border-primary hover:text-primary transition-colors"
+        aria-label="Toggle color theme"
+      >
+        <svg class="theme-icon-sun hidden w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="theme-icon-moon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 0 0 11.5 11.5z"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <div class="md:hidden flex items-center gap-3">
+      <button
+        type="button"
+        id="theme-toggle-mobile"
+        class="w-11 h-11 rounded-full inline-flex items-center justify-center border border-border/60 bg-background/60"
+        aria-label="Toggle color theme"
+      >
+        <svg class="theme-icon-sun hidden w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="theme-icon-moon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 0 0 11.5 11.5z"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="w-11 h-11 rounded-full inline-flex items-center justify-center border border-border/60"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <svg id="menu-icon-open" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="menu-icon-close" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="md:hidden hidden border-t border-border bg-background" aria-label="Mobile">
+    <div class="flex flex-col p-4 gap-2">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class="mobile-nav-link text-lg font-medium py-2 border-b border-border/40">
+            {item.name}
+          </a>
+        ))
+      }
+      <a href="#contact" class="mobile-nav-link text-lg font-medium py-2 text-primary">Hire Me</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById("site-header");
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+  const openIcon = document.getElementById("menu-icon-open");
+  const closeIcon = document.getElementById("menu-icon-close");
+
+  const updateHeader = () => {
+    if (!header) return;
+    const scrolled = window.scrollY > 40;
+    header.classList.toggle("glass-strong", scrolled);
+    header.classList.toggle("py-4", scrolled);
+    header.classList.toggle("py-6", !scrolled);
+    header.classList.toggle("shadow-lg", scrolled);
+  };
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader();
+
+  const setMenuOpen = (open: boolean) => {
+    mobileNav?.classList.toggle("hidden", !open);
+    openIcon?.classList.toggle("hidden", open);
+    closeIcon?.classList.toggle("hidden", !open);
+    menuToggle?.setAttribute("aria-expanded", String(open));
+    menuToggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+
+  menuToggle?.addEventListener("click", () => {
+    const open = menuToggle.getAttribute("aria-expanded") !== "true";
+    setMenuOpen(open);
+  });
+
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  const syncThemeIcons = (theme: string) => {
+    document.querySelectorAll(".theme-icon-sun").forEach((el) => {
+      el.classList.toggle("hidden", theme !== "dark");
+    });
+    document.querySelectorAll(".theme-icon-moon").forEach((el) => {
+      el.classList.toggle("hidden", theme === "dark");
+    });
+  };
+
+  const applyTheme = (theme: "light" | "dark") => {
+    const root = document.documentElement;
+    root.classList.toggle("light", theme === "light");
+    root.classList.toggle("dark", theme === "dark");
+    root.style.colorScheme = theme;
+    localStorage.setItem("theme", theme);
+    syncThemeIcons(theme);
+  };
+
+  const current = document.documentElement.classList.contains("light") ? "light" : "dark";
+  syncThemeIcons(current);
+
+  const toggleTheme = () => {
+    const next = document.documentElement.classList.contains("light") ? "dark" : "light";
+    applyTheme(next);
+  };
+
+  document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
+  document.getElementById("theme-toggle-mobile")?.addEventListener("click", toggleTheme);
+</script>

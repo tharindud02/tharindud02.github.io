@@ -1,5 +1,3 @@
-// Static portfolio data extracted from server seed data
-
 export interface Skill {
   id: number;
   name: string;
@@ -21,18 +19,41 @@ export interface Project {
   description: string;
   technologies: string[];
   link: string;
-  imageUrl: string;
+  image: string;
 }
 
+export const site = {
+  name: "Tharindu Damith Hashantha",
+  shortName: "Tharindu Damith",
+  title: "Senior Software Engineer",
+  description:
+    "Senior Software Engineer with 8+ years delivering full-stack, cloud-native, and AI-integrated production systems.",
+  url: "https://tharindud02.github.io",
+  email: "tharindud02@gmail.com",
+  phone: ["+94714669150", "+94723309695"],
+  location: "Colombo, Sri Lanka",
+  github: "https://github.com/tharindud02",
+  linkedin: "https://linkedin.com/in/ztharinduz",
+  resume: "/Tharindu_Resume.pdf",
+  keywords: [
+    "Senior Software Engineer",
+    "Full-Stack",
+    "AI Systems",
+    "LLM",
+    "React",
+    "Astro",
+    "Node.js",
+    "AWS",
+    "Solana",
+  ],
+} as const;
+
 export const skills: Skill[] = [
-  // AI & LLM
   { id: 1, name: "LLM API Integration", category: "AI & LLM", proficiency: "Advanced" },
   { id: 2, name: "Prompt Engineering", category: "AI & LLM", proficiency: "Advanced" },
   { id: 3, name: "Streaming Outputs", category: "AI & LLM", proficiency: "Advanced" },
   { id: 4, name: "Structured Inference Pipelines", category: "AI & LLM", proficiency: "Advanced" },
   { id: 5, name: "RAG Patterns", category: "AI & LLM", proficiency: "Advanced" },
-
-  // Frontend
   { id: 6, name: "React.js", category: "Frontend", proficiency: "Advanced" },
   { id: 7, name: "Next.js", category: "Frontend", proficiency: "Advanced" },
   { id: 8, name: "Angular", category: "Frontend", proficiency: "Advanced" },
@@ -40,29 +61,21 @@ export const skills: Skill[] = [
   { id: 10, name: "TypeScript", category: "Frontend", proficiency: "Advanced" },
   { id: 11, name: "Tailwind CSS", category: "Frontend", proficiency: "Advanced" },
   { id: 12, name: "Redux/Zustand", category: "Frontend", proficiency: "Advanced" },
-  { id: 13, name: "Framer Motion", category: "Frontend", proficiency: "Advanced" },
+  { id: 13, name: "Astro", category: "Frontend", proficiency: "Advanced" },
   { id: 14, name: "GraphQL", category: "Frontend", proficiency: "Intermediate" },
-
-  // Backend
   { id: 15, name: "Node.js", category: "Backend", proficiency: "Advanced" },
   { id: 16, name: "NestJS", category: "Backend", proficiency: "Advanced" },
   { id: 17, name: "Express.js", category: "Backend", proficiency: "Advanced" },
   { id: 18, name: "FastAPI", category: "Backend", proficiency: "Advanced" },
   { id: 19, name: "REST APIs", category: "Backend", proficiency: "Advanced" },
-
-  // Mobile
   { id: 20, name: "React Native", category: "Mobile", proficiency: "Advanced" },
   { id: 21, name: "Flutter", category: "Mobile", proficiency: "Advanced" },
   { id: 22, name: "Expo", category: "Mobile", proficiency: "Advanced" },
   { id: 23, name: "Ionic", category: "Mobile", proficiency: "Advanced" },
-
-  // Databases
   { id: 24, name: "PostgreSQL", category: "Databases", proficiency: "Advanced" },
   { id: 25, name: "MongoDB", category: "Databases", proficiency: "Advanced" },
   { id: 26, name: "MySQL", category: "Databases", proficiency: "Advanced" },
   { id: 27, name: "Redis", category: "Databases", proficiency: "Advanced" },
-
-  // Cloud & DevOps
   { id: 28, name: "AWS", category: "Cloud & DevOps", proficiency: "Advanced" },
   { id: 29, name: "ECS", category: "Cloud & DevOps", proficiency: "Advanced" },
   { id: 30, name: "Lambda", category: "Cloud & DevOps", proficiency: "Advanced" },
@@ -76,15 +89,11 @@ export const skills: Skill[] = [
   { id: 38, name: "CloudWatch", category: "Cloud & DevOps", proficiency: "Advanced" },
   { id: 39, name: "Docker", category: "Cloud & DevOps", proficiency: "Advanced" },
   { id: 40, name: "GitHub Actions", category: "Cloud & DevOps", proficiency: "Advanced" },
-
-  // Blockchain
   { id: 41, name: "Solana", category: "Blockchain", proficiency: "Advanced" },
   { id: 42, name: "Anchor", category: "Blockchain", proficiency: "Advanced" },
   { id: 43, name: "Smart Contracts", category: "Blockchain", proficiency: "Advanced" },
   { id: 44, name: "IPFS", category: "Blockchain", proficiency: "Advanced" },
   { id: 45, name: "Web3 Wallet Integrations", category: "Blockchain", proficiency: "Advanced" },
-
-  // Tools
   { id: 46, name: "Git", category: "Tools", proficiency: "Advanced" },
   { id: 47, name: "Postman", category: "Tools", proficiency: "Advanced" },
   { id: 48, name: "Jira", category: "Tools", proficiency: "Advanced" },
@@ -146,7 +155,7 @@ export const projects: Project[] = [
       "Architected an AI-driven valuation platform combining LLM analysis with live MMR and KBB/Bluebook data, real-time streaming output, and an interactive insights dashboard.",
     technologies: ["Node.js", "React", "LLM APIs", "Streaming"],
     link: "#",
-    imageUrl: "/images/reference-image-1.jpg",
+    image: "placeholder",
   },
   {
     id: 2,
@@ -155,7 +164,7 @@ export const projects: Project[] = [
       "Built a full-featured iOS/Android study app with QBank workflows, timed 150-question mock exams, performance analytics, and an offline-first data layer.",
     technologies: ["React Native", "Expo", "Node.js"],
     link: "#",
-    imageUrl: "/images/reference-image-1.jpg",
+    image: "placeholder",
   },
   {
     id: 3,
@@ -164,7 +173,7 @@ export const projects: Project[] = [
       "Delivered a secure investment portal with real-time dashboards, account workflows, and transaction flows using Cognito auth, ECS deployment, and CloudWatch monitoring.",
     technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
     link: "#",
-    imageUrl: "/images/reference-image-1.jpg",
+    image: "placeholder",
   },
   {
     id: 4,
@@ -173,16 +182,15 @@ export const projects: Project[] = [
       "Engineered event-triggered Solana NFT minting with multi-wallet support, IPFS metadata pipelines, and a React-based claim experience.",
     technologies: ["Solana", "Anchor", "React", "TypeScript", "IPFS"],
     link: "#",
-    imageUrl: "/images/59355f751c1e3698cc6360b1a7390094.jpg",
+    image: "poap",
   },
   {
     id: 5,
     title: "Australian Carpentry Service Web",
-    description:
-      "Developed an Australian Carpentry Service website using Next.js within a week.",
+    description: "Developed an Australian Carpentry Service website using Next.js within a week.",
     technologies: ["Next.js"],
     link: "#",
-    imageUrl: "/images/tlt.png",
+    image: "tlt",
   },
   {
     id: 6,
@@ -191,34 +199,31 @@ export const projects: Project[] = [
       "Collaborated on the development of a news website for Sri Lanka and Australia, using React.js and Node.js.",
     technologies: ["React.js", "Node.js"],
     link: "#",
-    imageUrl: "/images/newsz.png",
+    image: "newsz",
   },
   {
     id: 7,
     title: "Moonstorm Ecommerce WordPress Website",
-    description:
-      "Built an ecommerce website using WordPress for selling jewelries.",
+    description: "Built an ecommerce website using WordPress for selling jewelries.",
     technologies: ["WordPress"],
     link: "#",
-    imageUrl: "/images/moonstorm.png",
+    image: "placeholder",
   },
   {
     id: 8,
     title: "Furgonetka Courier Delivery Service",
-    description:
-      "Developed a courier delivery service using PHP, JavaScript, and MySQL.",
+    description: "Developed a courier delivery service using PHP, JavaScript, and MySQL.",
     technologies: ["PHP", "JavaScript", "MySQL"],
     link: "#",
-    imageUrl: "/images/furgonetka.png",
+    image: "furgonetka",
   },
   {
     id: 9,
     title: "Apium.io Company Website",
-    description:
-      "Built the Apium company website using WordPress within one week.",
+    description: "Built the Apium company website using WordPress within one week.",
     technologies: ["WordPress"],
     link: "#",
-    imageUrl: "/images/59355f751c1e3698cc6360b1a7390094.jpg",
+    image: "poap",
   },
   {
     id: 10,
@@ -227,7 +232,7 @@ export const projects: Project[] = [
       "Participated in the development of a food delivery application for Sri Lanka, creating web applications using Angular, Node, and MongoDB.",
     technologies: ["Angular", "Node", "MongoDB"],
     link: "#",
-    imageUrl: "/images/kamuda.jpg",
+    image: "kamuda",
   },
   {
     id: 11,
@@ -236,7 +241,7 @@ export const projects: Project[] = [
       "Developed a static website for a skincare treatment business using HTML, CSS, and JavaScript. Completed within three weeks.",
     technologies: ["HTML", "CSS", "JavaScript"],
     link: "#",
-    imageUrl: "/images/essex.jpg",
+    image: "essex",
   },
   {
     id: 12,
@@ -245,16 +250,15 @@ export const projects: Project[] = [
       "Created a static website for an SEO agency using HTML, CSS, and JavaScript. Completed within one week.",
     technologies: ["HTML", "CSS", "JavaScript"],
     link: "#",
-    imageUrl: "/images/seofulham.jpg",
+    image: "seofulham",
   },
   {
     id: 13,
     title: "ChattyBunny Application",
-    description:
-      "Developed a real-time chat application with modern UI/UX using React and Node.js.",
+    description: "Developed a real-time chat application with modern UI/UX using React and Node.js.",
     technologies: ["React", "Node.js", "WebSocket"],
     link: "#",
-    imageUrl: "/images/chattybunny.png",
+    image: "chattybunny",
   },
   {
     id: 14,
@@ -263,6 +267,6 @@ export const projects: Project[] = [
       "Built a car rental booking platform with payment integration using modern web technologies.",
     technologies: ["React", "Node.js", "MongoDB"],
     link: "#",
-    imageUrl: "/images/chcarrental.png",
+    image: "chcarrental",
   },
 ];
