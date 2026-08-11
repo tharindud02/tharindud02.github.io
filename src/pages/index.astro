@@ -11,7 +11,7 @@ import Projects from "@/components/Projects.astro";
 import Contact from "@/components/Contact.astro";
 import Footer from "@/components/Footer.astro";
 
-const widths = [216, 288, 384, 512] as const;
+const widths = [288, 384, 512, 720] as const;
 const heroImages = await Promise.all(
   widths.map((width) =>
     getImage({
@@ -19,13 +19,13 @@ const heroImages = await Promise.all(
       width,
       height: width,
       format: "webp",
-      quality: 72,
+      quality: 78,
     }),
   ),
 );
-const preloadImage = heroImages[2].src;
+const preloadImage = heroImages[1].src;
 const preloadImageSrcset = heroImages.map((image, index) => `${image.src} ${widths[index]}w`).join(", ");
-const preloadImageSizes = "(max-width: 640px) 216px, (max-width: 1024px) 288px, 384px";
+const preloadImageSizes = "(max-width: 640px) 224px, (max-width: 768px) 320px, 436px";
 ---
 
 <BaseLayout
