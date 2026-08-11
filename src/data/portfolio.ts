@@ -31,7 +31,6 @@ export const site = {
   location: "Colombo, Sri Lanka",
   github: "https://github.com/tharindud02",
   linkedin: "https://linkedin.com/in/ztharinduz",
-  resume: "/Tharindu_Resume.pdf",
   keywords: [
     "Senior Software Engineer",
     "Full-Stack Developer",
