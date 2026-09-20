@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tharindud02.github.io/sitemap-index.xml
+Sitemap: https://www.hashantha.com/sitemap-index.xml

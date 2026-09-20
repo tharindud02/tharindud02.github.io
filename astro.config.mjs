@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://tharindud02.github.io",
+  site: "https://www.hashantha.com",
   compressHTML: true,
   build: {
     inlineStylesheets: "always",

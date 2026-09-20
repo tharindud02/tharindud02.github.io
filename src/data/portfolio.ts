@@ -23,9 +23,16 @@ export const site = {
   name: "Tharindu Damith Hashantha",
   shortName: "Tharindu Damith",
   title: "Senior Full-Stack & AI Software Engineer",
+  seoTitle: "Tharindu Damith | Senior Full-Stack & AI Software Engineer",
   description:
-    "Tharindu Damith is a Senior Full-Stack Software Engineer with 8+ years building production web, mobile, and AI-powered apps in React, Next.js, Node.js, and AWS.",
-  url: "https://tharindud02.github.io",
+    "Senior Full-Stack & AI Software Engineer in Colombo, Sri Lanka. 8+ years shipping web, mobile, and LLM-powered products with React, Next.js, Node.js, and AWS.",
+  ogImageAlt: "Tharindu Damith, Senior Full-Stack & AI Software Engineer based in Colombo, Sri Lanka",
+  url: "https://www.hashantha.com",
+  // Paste the `content` value from each webmaster tool's "HTML tag" verification option.
+  verification: {
+    google: "",
+    bing: "",
+  },
   email: "tharindud02@gmail.com",
   phone: ["+94714669150", "+94723309695"],
   location: "Colombo, Sri Lanka",
@@ -58,6 +65,29 @@ export const stack: string[] = [
   "n8n Automation",
   "Bubble.io",
   "Solana / Web3",
+];
+
+export interface SkillGroup {
+  label: string;
+  items: string[];
+}
+
+export const skillGroups: SkillGroup[] = [
+  { label: "Languages", items: ["TypeScript", "JavaScript"] },
+  { label: "Frontend", items: ["React", "Next.js", "Angular", "Tailwind CSS", "Astro"] },
+  { label: "Mobile", items: ["React Native", "Expo", "Flutter"] },
+  { label: "Backend", items: ["Node.js", "NestJS", "REST APIs", "WebSockets", "Webhooks"] },
+  { label: "Databases", items: ["PostgreSQL (Amazon RDS)", "DynamoDB", "MongoDB", "MySQL"] },
+  {
+    label: "Cloud & DevOps",
+    items: ["AWS (Lambda, ECS, EC2, S3, Amplify, Cognito, CloudWatch)", "Docker", "CI/CD"],
+  },
+  {
+    label: "AI & Automation",
+    items: ["LLM API integration", "Streaming responses", "AI vision", "n8n", "Bubble.io"],
+  },
+  { label: "Web3", items: ["Solana", "Anchor", "IPFS"] },
+  { label: "Platforms", items: ["Salesforce", "Stripe"] },
 ];
 
 export const experience: Experience[] = [
@@ -255,7 +285,7 @@ export const projects: Project[] = [
     title: "Asia Securities: Client Investment Portal",
     description:
       "Secure investment portal with real-time dashboards, account workflows, and transaction flows using Cognito auth, ECS deployment, and CloudWatch monitoring.",
-    technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
+    technologies: ["React", "Node.js", "DynamoDB", "AWS"],
     link: "#",
     category: "SaaS Platform",
     platform: "Web",

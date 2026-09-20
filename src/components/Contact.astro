@@ -10,11 +10,11 @@ import { site } from "@/data/portfolio";
       <p class="text-muted-foreground mb-8">Available for senior full-stack and AI-focused engineering roles.</p>
       <div class="space-y-6">
         <div>
-          <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Email</p>
+          <p class="text-sm font-semibold text-primary mb-1">Email</p>
           <a href={`mailto:${site.email}`} class="text-lg font-medium hover:underline">{site.email}</a>
         </div>
         <div>
-          <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Phone</p>
+          <p class="text-sm font-semibold text-primary mb-1">Phone</p>
           {
             site.phone.map((phone) => (
               <a href={`tel:${phone}`} class="text-lg font-medium hover:underline block">
@@ -24,7 +24,7 @@ import { site } from "@/data/portfolio";
           }
         </div>
         <div>
-          <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Location</p>
+          <p class="text-sm font-semibold text-primary mb-1">Location</p>
           <p class="text-lg font-medium">{site.location}</p>
         </div>
       </div>

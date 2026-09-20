@@ -29,17 +29,17 @@
   --foreground: 222 47% 11%;
   --card: 0 0% 98%;
   --card-foreground: 222 47% 11%;
-  --primary: 158 64% 32%;
+  --primary: 158 64% 28%;
   --primary-foreground: 0 0% 100%;
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
   --muted: 210 40% 96%;
   --muted-foreground: 215 20% 35%;
-  --accent: 158 64% 32%;
+  --accent: 158 64% 28%;
   --accent-foreground: 0 0% 100%;
   --border: 217 33% 88%;
   --input: 217 33% 88%;
-  --ring: 158 64% 32%;
+  --ring: 158 64% 28%;
 }
 
 @layer base {
@@ -89,7 +89,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-emerald-300;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary;
   }
 
   .reveal {

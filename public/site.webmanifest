@@ -1,0 +1,13 @@
+{
+  "name": "Tharindu Damith Hashantha",
+  "short_name": "Tharindu D.",
+  "description": "Portfolio of Tharindu Damith, Senior Full-Stack & AI Software Engineer in Colombo, Sri Lanka.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -3,27 +3,86 @@ import jakartaWoff2 from "@fontsource-variable/plus-jakarta-sans/files/plus-jaka
 import spaceGroteskWoff2 from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
 import "@/styles/fonts.css";
 import "@/styles/global.css";
-import { site } from "@/data/portfolio";
+import { site, experience } from "@/data/portfolio";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
   preloadImage?: string;
   preloadImageSrcset?: string;
   preloadImageSizes?: string;
 }
 
 const {
-  title = `${site.name} - ${site.title}`,
+  title = site.seoTitle,
   description = site.description,
+  noindex = false,
   preloadImage,
   preloadImageSrcset,
   preloadImageSizes,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/og-image.jpg", site.url).href;
+const personId = `${site.url}/#person`;
+const websiteId = `${site.url}/#website`;
+const currentEmployer = experience[0];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: `${site.url}/`,
+      name: site.name,
+      description: site.description,
+      inLanguage: "en",
+      publisher: { "@id": personId },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${site.url}/#profilepage`,
+      url: `${site.url}/`,
+      name: site.seoTitle,
+      isPartOf: { "@id": websiteId },
+      mainEntity: { "@id": personId },
+      inLanguage: "en",
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: site.name,
+      alternateName: site.shortName,
+      url: `${site.url}/`,
+      image: ogImage,
+      jobTitle: site.title,
+      description: site.description,
+      email: site.email,
+      worksFor: {
+        "@type": "Organization",
+        name: currentEmployer.company,
+        url: "https://apium.io/",
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "University of Sri Jayewardenepura",
+      },
+      homeLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Colombo",
+          addressCountry: "LK",
+        },
+      },
+      sameAs: [site.github, site.linkedin],
+      knowsAbout: site.keywords,
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -34,13 +93,21 @@ const ogImage = new URL("/og-image.jpg", site.url).href;
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
     <meta name="keywords" content={site.keywords.join(", ")} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+    />
+    {site.verification.google && <meta name="google-site-verification" content={site.verification.google} />}
+    {site.verification.bing && <meta name="msvalidate.01" content={site.verification.bing} />}
     <meta name="theme-color" content="#0f172a" />
     <meta name="color-scheme" content="dark light" />
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {!noindex && <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" href={jakartaWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={spaceGroteskWoff2} as="font" type="font/woff2" crossorigin />
     {preloadImage && (
@@ -54,12 +121,24 @@ const ogImage = new URL("/og-image.jpg", site.url).href;
       />
     )}
     <title>{title}</title>
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+    </noscript>
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.ogImageAlt} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="en_US" />
 
@@ -67,6 +146,7 @@ const ogImage = new URL("/og-image.jpg", site.url).href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={site.ogImageAlt} />
 
     <script is:inline>
       (() => {
@@ -83,21 +163,7 @@ const ogImage = new URL("/og-image.jpg", site.url).href;
       })();
     </script>
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: site.name,
-      jobTitle: site.title,
-      url: site.url,
-      email: site.email,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Colombo",
-        addressCountry: "LK",
-      },
-      sameAs: [site.github, site.linkedin],
-      knowsAbout: site.keywords,
-    })} />
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>
   <body class="min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-primary/25">
     <a

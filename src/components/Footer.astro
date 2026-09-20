@@ -5,12 +5,18 @@ const year = new Date().getFullYear();
 
 <footer class="py-10 bg-card border-t border-border mt-16">
   <div class="container mx-auto px-4 text-center">
-    <nav class="flex justify-center items-center gap-6 mb-6" aria-label="Social links">
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-1 mb-4" aria-label="Footer">
+      <a href="#about" class="inline-flex min-h-[44px] items-center text-sm text-muted-foreground hover:text-primary transition-colors">About</a>
+      <a href="#experience" class="inline-flex min-h-[44px] items-center text-sm text-muted-foreground hover:text-primary transition-colors">Experience</a>
+      <a href="#projects" class="inline-flex min-h-[44px] items-center text-sm text-muted-foreground hover:text-primary transition-colors">Projects</a>
+      <a href="#contact" class="inline-flex min-h-[44px] items-center text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a>
+    </nav>
+    <nav class="flex justify-center items-center gap-2 mb-6" aria-label="Social links">
       <a
         href={site.github}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-muted-foreground hover:text-primary transition-colors"
+        class="inline-flex h-11 w-11 items-center justify-center text-muted-foreground hover:text-primary transition-colors"
         aria-label="GitHub"
       >
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -21,7 +27,7 @@ const year = new Date().getFullYear();
         href={site.linkedin}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-muted-foreground hover:text-primary transition-colors"
+        class="inline-flex h-11 w-11 items-center justify-center text-muted-foreground hover:text-primary transition-colors"
         aria-label="LinkedIn"
       >
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -30,7 +36,7 @@ const year = new Date().getFullYear();
       </a>
       <a
         href={`mailto:${site.email}`}
-        class="text-muted-foreground hover:text-primary transition-colors"
+        class="inline-flex h-11 w-11 items-center justify-center text-muted-foreground hover:text-primary transition-colors"
         aria-label="Email"
       >
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">

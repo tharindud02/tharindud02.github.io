@@ -21,6 +21,8 @@ npm run preview
 
 ## Deploy
 
-GitHub Actions builds `dist/` and deploys to GitHub Pages on push to `main`/`master`.
+Production is served from Vercel at https://www.hashantha.com (the apex `hashantha.com` redirects to `www`).
+The canonical host is set in `astro.config.mjs` (`site`) and `src/data/portfolio.ts` (`site.url`); keep both in sync.
 
-Site URL: https://tharindud02.github.io
+A GitHub Actions workflow also builds `dist/` and deploys a copy to GitHub Pages (https://tharindud02.github.io).
+Its pages declare `www.hashantha.com` as canonical, so search engines consolidate on the custom domain.
