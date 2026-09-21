@@ -11,8 +11,8 @@ const sorted = [...projects].sort((a, b) => Number(!!b.featured) - Number(!!a.fe
   title="Featured Projects"
   subtitle="Production systems across AI, SaaS, mobile, and Web3, shipped end-to-end"
 >
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-    {sorted.map((project, idx) => <ProjectCard project={project} delayMs={(idx % 6) * 40} />)}
+  <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+    {sorted.map((project, idx) => <ProjectCard project={project} delayMs={(idx % 8) * 30} />)}
   </div>
 
   {
@@ -22,8 +22,8 @@ const sorted = [...projects].sort((a, b) => Number(!!b.featured) - Number(!!a.fe
           <h3 class="text-3xl md:text-4xl font-bold font-display mb-3 text-gradient">Additional Work</h3>
           <p class="text-muted-foreground max-w-2xl">Earlier client and agency projects across web and ecommerce.</p>
         </header>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-          {additionalProjects.map((project, idx) => <ProjectCard project={project} delayMs={(idx % 6) * 40} />)}
+        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          {additionalProjects.map((project, idx) => <ProjectCard project={project} delayMs={(idx % 8) * 30} />)}
         </div>
       </div>
     )
