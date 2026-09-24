@@ -1,0 +1,34 @@
+---
+import Section from "./Section.astro";
+import { publications } from "@/data/portfolio";
+---
+
+<Section id="writing" title="Writing" subtitle="Technical articles on Solana and Web3">
+  <ul class="grid gap-6 md:grid-cols-3 list-none p-0 m-0">
+    {
+      publications.map((post, idx) => (
+        <li class="reveal" style={`transition-delay:${idx * 60}ms`}>
+          <article class="group h-full flex flex-col rounded-3xl border border-border/60 bg-card/50 backdrop-blur-xl p-6 sm:p-7 transition-[border-color,background-color] duration-300 hover:border-primary/60 hover:bg-card/80">
+            <span class="self-start text-xs font-semibold text-muted-foreground bg-secondary/50 border border-border/50 px-3 py-1 rounded-full mb-4">
+              {post.platform}
+            </span>
+            <h3 class="text-lg sm:text-xl font-bold font-display text-foreground mb-3 leading-snug">{post.title}</h3>
+            <p class="text-sm sm:text-[15px] text-muted-foreground leading-relaxed mb-6">{post.summary}</p>
+            <a
+              href={post.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline underline-offset-4"
+              aria-label={`Read "${post.title}" on ${post.platform}`}
+            >
+              Read article
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg>
+            </a>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

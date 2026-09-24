@@ -3,7 +3,14 @@ export interface Experience {
   role: string;
   company: string;
   period: string;
-  highlights?: string[];
+  description: string;
+}
+
+export interface Publication {
+  title: string;
+  platform: "Substack" | "Medium";
+  url: string;
+  summary: string;
 }
 
 export interface Project {
@@ -22,11 +29,11 @@ export interface Project {
 export const site = {
   name: "Tharindu Damith Hashantha",
   shortName: "Tharindu Damith",
-  title: "Senior Full-Stack & AI Software Engineer",
-  seoTitle: "Tharindu Damith | Senior Full-Stack & AI Software Engineer",
+  title: "Associate Tech Lead · Full-Stack & AI Engineer",
+  seoTitle: "Tharindu Damith | Associate Tech Lead · Full-Stack & AI Engineer",
   description:
-    "Senior Full-Stack & AI Software Engineer in Colombo, Sri Lanka. 8+ years shipping web, mobile, and LLM-powered products with React, Next.js, Node.js, and AWS.",
-  ogImageAlt: "Tharindu Damith, Senior Full-Stack & AI Software Engineer based in Colombo, Sri Lanka",
+    "Associate Tech Lead and Full-Stack Engineer in Colombo, Sri Lanka. 6+ years building Node.js and React/Next.js products across fintech, wealth management, automotive, and healthcare, with AWS infrastructure on Terraform and CI/CD.",
+  ogImageAlt: "Tharindu Damith, Associate Tech Lead and Full-Stack Engineer based in Colombo, Sri Lanka",
   url: "https://www.hashantha.com",
   // Paste the `content` value from each webmaster tool's "HTML tag" verification option.
   verification: {
@@ -39,6 +46,8 @@ export const site = {
   github: "https://github.com/tharindud02",
   linkedin: "https://linkedin.com/in/ztharinduz",
   keywords: [
+    "Associate Tech Lead",
+    "Tech Lead",
     "Senior Software Engineer",
     "Full-Stack Developer",
     "AI Systems",
@@ -49,6 +58,7 @@ export const site = {
     "React Native",
     "Node.js",
     "AWS",
+    "Terraform",
     "DevOps",
     "Solana",
   ],
@@ -61,6 +71,7 @@ export const stack: string[] = [
   "TypeScript",
   "AWS (RDS, Lambda, ECS, Amplify)",
   "Docker / CI/CD",
+  "Terraform",
   "AI & LLM Integration",
   "n8n Automation",
   "Bubble.io",
@@ -73,14 +84,20 @@ export interface SkillGroup {
 }
 
 export const skillGroups: SkillGroup[] = [
-  { label: "Languages", items: ["TypeScript", "JavaScript"] },
-  { label: "Frontend", items: ["React", "Next.js", "Angular", "Tailwind CSS", "Astro"] },
+  { label: "Languages", items: ["TypeScript", "JavaScript", "PHP"] },
+  { label: "Frontend", items: ["React", "Next.js (App Router, SSR/ISR)", "Angular", "Tailwind CSS", "Astro"] },
   { label: "Mobile", items: ["React Native", "Expo", "Flutter"] },
   { label: "Backend", items: ["Node.js", "NestJS", "REST APIs", "WebSockets", "Webhooks"] },
   { label: "Databases", items: ["PostgreSQL (Amazon RDS)", "DynamoDB", "MongoDB", "MySQL"] },
   {
     label: "Cloud & DevOps",
-    items: ["AWS (Lambda, ECS, EC2, S3, Amplify, Cognito, CloudWatch)", "Docker", "CI/CD"],
+    items: [
+      "AWS (Lambda, ECS, EC2, S3, Amplify, Cognito, CloudWatch, CloudFormation)",
+      "Terraform",
+      "Docker",
+      "CI/CD",
+      "Serverless",
+    ],
   },
   {
     label: "AI & Automation",
@@ -93,51 +110,114 @@ export const skillGroups: SkillGroup[] = [
 export const experience: Experience[] = [
   {
     id: 1,
-    role: "Senior Software Engineer",
+    role: "Associate Tech Lead",
     company: "Apium Innovation (Pvt) Ltd",
-    period: "2023 - Present",
-    highlights: [
-      "Architect and deliver full-stack web, mobile, and AI-powered systems in production.",
-      "Build LLM-integrated platforms with real-time streaming responses and structured pipelines.",
-      "Design and operate AWS cloud-native infrastructure with Docker-based CI/CD.",
-      "Lead technical planning and mentor junior engineers across fintech, healthcare, and automotive domains.",
-    ],
+    period: "2025 - Present",
+    description:
+      "Lead technical planning, code reviews and delivery of web and mobile platforms, building Next.js and React frontends, NestJS/Node.js backends and React Native apps for fintech and engagement-tracking clients.",
   },
   {
     id: 2,
     role: "Senior Software Engineer",
-    company: "CyberStorm Asia (Pvt) Ltd",
-    period: "2022 - 2023",
-    highlights: [
-      "Engineered scalable backend APIs and responsive frontend systems for enterprise clients.",
-      "Contributed to architecture reviews and technical roadmap planning across concurrent projects.",
-    ],
+    company: "Apium Innovation (Pvt) Ltd",
+    period: "2023 - 2025",
+    description:
+      "Built production systems for wealth management, logistics and SaaS clients, covering third-party integrations, Terraform-managed AWS infrastructure and n8n workflow automation.",
   },
   {
     id: 3,
-    role: "Software Engineer & Salesforce Developer",
-    company: "Apium Innovation (Pvt) Ltd",
-    period: "2018 - 2022",
-    highlights: [
-      "Delivered full-stack web platforms and Salesforce CRM customizations.",
-      "Built client systems for fintech, logistics, and enterprise workflows.",
-    ],
+    role: "Software Engineer",
+    company: "CyberStorm Asia (Pvt) Ltd",
+    period: "2020 - 2023",
+    description:
+      "Developed full-stack web applications with React, Next.js and Node.js, including real-time messaging, content publishing platforms and SEO-focused business websites.",
   },
   {
     id: 4,
-    role: "Front-End Developer",
-    company: "Productive Media",
-    period: "2018 - 2019",
-  },
-  {
-    id: 5,
     role: "Engineering Intern",
     company: "CodeGen International",
     period: "2013",
+    description:
+      "Supported the engineering team on software development tasks, gaining hands-on experience with professional development workflows, version control and team-based delivery.",
+  },
+];
+
+export const publications: Publication[] = [
+  {
+    title: "Solana Smart Contracts Tutorial: Build, Deploy, and Test Your First Program with Rust",
+    platform: "Substack",
+    url: "https://tharindux.substack.com/p/solana-smart-contracts-tutorial-build",
+    summary:
+      "A step-by-step guide to Solana program architecture and hands-on Rust development: building, deploying and testing a first on-chain program.",
+  },
+  {
+    title: "The Blockchain Multiverse: Layers That Power Web3",
+    platform: "Substack",
+    url: "https://tharindux.substack.com/p/the-blockchain-multiverse-layers",
+    summary:
+      "Blockchain architecture from Layer 0 to Layer 2, and how interoperability, base-layer consensus and scaling solutions work together.",
+  },
+  {
+    title: "Web3: Reclaiming Our Digital Selves: A Human Revolution for the Internet",
+    platform: "Medium",
+    url: "https://medium.com/@tharinduxdev/web3-reclaiming-our-digital-selves-a-human-revolution-for-the-internet-a1fa2b29ca3c",
+    summary:
+      "How Web3 moves ownership of digital identity, data and creative content from centralized platforms back to users through decentralized architecture and self-custodied accounts.",
   },
 ];
 
 export const projects: Project[] = [
+  {
+    id: 7,
+    title: "AMC PrepPro: Medical Exam Prep",
+    description:
+      "Full-featured study app for the AMC exam with QBank workflows, timed 150-question mock exams, performance analytics, and an offline-first data layer.",
+    technologies: ["React Native", "Expo", "Node.js"],
+    link: "https://play.google.com/store/apps/details?id=com.amcexampreparation.amcpreppro",
+    linkLabel: "Play Store",
+    category: "Mobile App",
+    platform: "iOS & Android",
+    status: "Live on Google Play & App Store",
+    featured: true,
+  },
+  {
+    id: 25,
+    title: "PlayNet: Game Engagement Tracking Platform",
+    description:
+      "Engagement tracking platform used by brands like Unilever and the Singapore Tourism Board. I built the Next.js web frontend and an analytics dashboard for player engagement across Roblox and Minecraft, with React Query and ISR caching to cut repeat API calls and page load times.",
+    technologies: ["Next.js", "TypeScript", "React Query", "Node.js"],
+    link: "https://www.playnet.xyz/",
+    linkLabel: "Live Site",
+    category: "SaaS Platform",
+    platform: "Web",
+    status: "Production",
+    featured: true,
+  },
+  {
+    id: 26,
+    title: "ThirdPay: Global Digital Dollar Business Accounts",
+    description:
+      "Cross-border payments platform that lets businesses collect money locally, hold treasury in USD-pegged digital dollars (USDC on Solana), and send payouts globally. I built the business marketing website plus the ThirdPay web and mobile apps: a NestJS backend, a React web app, and a React Native mobile app.",
+    technologies: ["NestJS", "React", "React Native", "TypeScript", "REST APIs", "Solana"],
+    link: "https://thirdpay.io/",
+    linkLabel: "Live Site",
+    category: "Fintech",
+    platform: "Web & Mobile",
+    status: "Production",
+    featured: true,
+  },
+  {
+    id: 27,
+    title: "Purple: WiFi Platform Workflow Automation",
+    description:
+      "Purple is a guest, staff, and multi-tenant WiFi platform live across 80,000+ venues worldwide. I built the n8n workflow automation layer, connecting internal systems and third-party services through webhooks and REST APIs, with scheduled workflows that automate operational processes and replace manual steps.",
+    technologies: ["n8n", "Workflow Automation", "Webhooks", "REST APIs"],
+    link: "https://www.purple.ai/en-gb",
+    linkLabel: "Live Site",
+    category: "AI & Automation",
+    platform: "Web",
+    status: "Production",
+  },
   {
     id: 1,
     title: "AutoScout: Car Dealership Management Platform",
@@ -213,18 +293,6 @@ export const projects: Project[] = [
     status: "Live on Play Store",
   },
   {
-    id: 7,
-    title: "AMC PrepPro: Medical Exam Prep",
-    description:
-      "Full-featured study app for the AMC exam with QBank workflows, timed 150-question mock exams, performance analytics, and an offline-first data layer.",
-    technologies: ["React Native", "Expo", "Node.js"],
-    link: "https://play.google.com/store/apps/details?id=com.amcexampreparation.amcpreppro",
-    linkLabel: "Play Store",
-    category: "Mobile App",
-    platform: "iOS & Android",
-    status: "Live on Play Store",
-  },
-  {
     id: 8,
     title: "PawStay: Multi-Tenant Pet Boarding SaaS",
     description:
@@ -282,11 +350,12 @@ export const projects: Project[] = [
   },
   {
     id: 13,
-    title: "Asia Securities: Client Investment Portal",
+    title: "Asia Securities: IPO & Unit Trust Platforms",
     description:
-      "Secure investment portal with real-time dashboards, account workflows, and transaction flows using Cognito auth, ECS deployment, and CloudWatch monitoring.",
-    technologies: ["React", "Node.js", "DynamoDB", "AWS"],
-    link: "#",
+      "Secure IPO and unit trust investment platforms with real-time dashboards, account workflows, and transaction flows. Integrated third-party authentication and data providers, with Terraform-managed AWS infrastructure (Cognito, ECS, CloudWatch) in production.",
+    technologies: ["React", "Node.js", "DynamoDB", "AWS", "Terraform"],
+    link: "https://www.asiasecurities.lk/",
+    linkLabel: "Live Site",
     category: "SaaS Platform",
     platform: "Web",
     status: "Production",
@@ -318,8 +387,9 @@ export const additionalProjects: Project[] = [
   {
     id: 16,
     title: "ChattyBunny",
-    description: "Real-time chat application with a modern UI/UX, built on WebSocket for instant messaging.",
-    technologies: ["React", "Node.js", "WebSocket"],
+    description:
+      "Social discovery platform with real-time Socket.IO messaging (presence, typing indicators, read receipts), a MongoDB data model with cursor-based chat pagination, and JWT-secured APIs.",
+    technologies: ["React", "Node.js", "Socket.IO", "MongoDB", "JWT"],
     link: "#",
     category: "Web Project",
     platform: "Web",
@@ -337,19 +407,22 @@ export const additionalProjects: Project[] = [
   },
   {
     id: 18,
-    title: "Furgonetka Courier Delivery",
-    description: "Courier delivery service platform handling shipment booking, tracking, and dispatch operations.",
+    title: "Packbook: Courier Delivery Platform",
+    description:
+      "Courier delivery platform covering shipment booking, real-time tracking, and dispatch operations, backed by MySQL structures for shipments, routes, and dispatch records.",
     technologies: ["PHP", "JavaScript", "MySQL"],
-    link: "#",
+    link: "https://packbook.pl",
+    linkLabel: "Live Site",
     category: "Web Project",
     platform: "Web",
     status: "Completed",
   },
   {
     id: 19,
-    title: "Sri Lanka & Australia News Web",
-    description: "News platform serving readers across Sri Lanka and Australia with categorized, real-time articles.",
-    technologies: ["React", "Node.js"],
+    title: "Newsz.lk: News Platform",
+    description:
+      "News platform for Sri Lanka and Australia with a Node.js/Express API for region and category feeds, an admin publishing and scheduling workflow, and caching and SEO improvements.",
+    technologies: ["React", "Node.js", "Express"],
     link: "#",
     category: "Web Project",
     platform: "Web",
@@ -358,8 +431,9 @@ export const additionalProjects: Project[] = [
   {
     id: 20,
     title: "Australian Carpentry Service",
-    description: "Marketing website for an Australian carpentry business, designed and delivered within one week.",
-    technologies: ["Next.js"],
+    description:
+      "Statically generated Next.js marketing site with LocalBusiness structured data, a sitemap, optimized images, and a validated quote request form. Delivered within one week.",
+    technologies: ["Next.js", "SSG", "SEO"],
     link: "#",
     category: "Web Project",
     platform: "Web",
