@@ -5,23 +5,25 @@ import { experience } from "@/data/portfolio";
 
 <Section id="experience" title="Work Experience" subtitle="My professional journey">
   <ol id="experience-timeline" class="relative max-w-3xl mx-auto list-none p-0 m-0">
-    <div class="absolute left-[15px] sm:left-5 top-2 bottom-2 w-px bg-gradient-to-b from-primary/60 via-border to-transparent" aria-hidden="true"></div>
+    <!-- Track -->
+    <div class="absolute left-[15px] sm:left-5 top-2 bottom-2 w-px bg-border/40" aria-hidden="true"></div>
+    <!-- Progress fill -->
+    <div
+      id="timeline-progress"
+      class="absolute left-[15px] sm:left-5 top-2 w-px origin-top bg-gradient-to-b from-primary via-emerald-400 to-primary/40"
+      style="height: 0; transform: scaleY(0);"
+      aria-hidden="true"
+    ></div>
 
-    <!-- Single moving indicator (replaces per-card dots) -->
+    <!-- Moving indicator -->
     <div
       id="timeline-indicator"
-      class="absolute left-0 sm:left-1 top-0 w-8 h-8 rounded-full border-4 border-background bg-primary shadow-lg shadow-primary/40 pointer-events-none will-change-transform"
+      class="absolute left-0 sm:left-1 top-0 w-8 h-8 rounded-full border-4 border-background bg-primary shadow-lg shadow-primary/40 pointer-events-none will-change-transform z-10"
       aria-hidden="true"
-      style="transform: translateY(0px);"
+      style="transform: translate3d(0,0,0);"
     >
-      <span class="block w-2.5 h-2.5 rounded-full bg-primary-foreground animate-pulse mx-auto mt-1.5" />
-    </div>
-    <div
-      id="timeline-period"
-      class="absolute left-[44px] sm:left-14 top-2 px-3 py-1 rounded-full bg-secondary/60 border border-border/50 text-xs font-semibold text-muted-foreground backdrop-blur-sm pointer-events-none opacity-100 transition-opacity duration-200 ease-out"
-      aria-live="polite"
-    >
-      {experience[0]?.period}
+      <span class="timeline-pulse absolute inset-0 rounded-full bg-primary/40" />
+      <span class="block w-2.5 h-2.5 rounded-full bg-primary-foreground mx-auto mt-1.5 relative z-[1]" />
     </div>
 
     {
@@ -29,17 +31,13 @@ import { experience } from "@/data/portfolio";
         <li
           data-period={exp.period}
           data-exp-index={idx}
-          class="relative pl-10 sm:pl-14 pb-12 last:pb-0 reveal"
+          class="exp-item relative pl-10 sm:pl-14 pb-12 last:pb-0 reveal"
           style={`transition-delay:${idx * 60}ms`}
         >
-          <article
-            class={`group rounded-3xl border border-border/60 bg-card/50 backdrop-blur-xl p-6 sm:p-7 transition-[transform,box-shadow,border-color,background-color,opacity] duration-300 ease-out will-change-transform ${
-              idx === 0 ? "timeline-active-card scale-[1.03] border-primary/60 bg-card/80 shadow-lg shadow-primary/10 opacity-100" : "opacity-95"
-            }`}
-          >
+          <article class="exp-card group rounded-3xl border border-border/60 bg-card/50 backdrop-blur-xl p-6 sm:p-7 will-change-transform">
             <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
               <h3 class="text-xl sm:text-2xl font-bold font-display text-foreground">{exp.role}</h3>
-              <span class="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-secondary/50 border border-border/50 px-3 py-1 rounded-full">
+              <span class="exp-period shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-secondary/50 border border-border/50 px-3 py-1 rounded-full transition-[color,border-color,background-color,box-shadow] duration-300">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <rect x="3" y="4" width="18" height="18" rx="2" />
                   <path d="M16 2v4M8 2v4M3 10h18" />
@@ -56,117 +54,214 @@ import { experience } from "@/data/portfolio";
       ))
     }
   </ol>
-
-  <script>
-    const timeline = document.getElementById("experience-timeline");
-    const indicator = document.getElementById("timeline-indicator");
-    const periodEl = document.getElementById("timeline-period");
-
-    if (timeline && indicator && periodEl) {
-      const items = Array.from(timeline.querySelectorAll("li[data-exp-index]"));
-      if (items.length > 0) {
-        const prefersReduced =
-          window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        const dotSize = 32; // Tailwind w-8/h-8
-        let activeIndex = 0;
-        let rafId = 0;
-
-        const setActiveCard = (nextIndex) => {
-          if (nextIndex < 0 || nextIndex >= items.length) return;
-          if (nextIndex === activeIndex) return;
-
-          const prevLi = items[activeIndex];
-          const nextLi = items[nextIndex];
-          const prevCard = prevLi ? prevLi.querySelector("article") : null;
-          const nextCard = nextLi ? nextLi.querySelector("article") : null;
-          if (!prevCard || !nextCard) {
-            activeIndex = nextIndex;
-            return;
-          }
-
-          prevCard.classList.remove(
-            "timeline-active-card",
-            "scale-[1.03]",
-            "border-primary/60",
-            "bg-card/80",
-            "shadow-lg",
-            "shadow-primary/10",
-            "opacity-100",
-          );
-          prevCard.classList.add("opacity-95");
-
-          nextCard.classList.add(
-            "timeline-active-card",
-            "scale-[1.03]",
-            "border-primary/60",
-            "bg-card/80",
-            "shadow-lg",
-            "shadow-primary/10",
-            "opacity-100",
-          );
-          nextCard.classList.remove("opacity-95");
-
-          periodEl.style.opacity = "0";
-          window.setTimeout(() => {
-            periodEl.textContent = nextLi.getAttribute("data-period") ?? "";
-            periodEl.style.opacity = "1";
-          }, prefersReduced ? 0 : 120);
-
-          activeIndex = nextIndex;
-        };
-
-        const setIndicatorPosition = (index) => {
-          const li = items[index];
-          if (!li) return;
-
-          const itemRect = li.getBoundingClientRect();
-          const timelineRect = timeline.getBoundingClientRect();
-
-          const centerY = itemRect.top - timelineRect.top + itemRect.height / 2;
-          const translateY = Math.round(centerY - dotSize / 2);
-          indicator.style.transform = `translateY(${translateY}px)`;
-        };
-
-        const update = () => {
-          rafId = 0;
-          const viewportMid = window.innerHeight * 0.5;
-
-          const timelineRect = timeline.getBoundingClientRect();
-          // If timeline isn't on screen yet, avoid jitter.
-          if (timelineRect.bottom < 0 || timelineRect.top > window.innerHeight) return;
-
-          let bestIndex = activeIndex;
-          let bestDist = Number.POSITIVE_INFINITY;
-
-          for (let i = 0; i < items.length; i++) {
-            const li = items[i];
-            const r = li.getBoundingClientRect();
-            const center = r.top + r.height / 2;
-            const dist = Math.abs(center - viewportMid);
-            if (dist < bestDist) {
-              bestDist = dist;
-              bestIndex = i;
-            }
-          }
-
-          setActiveCard(bestIndex);
-          setIndicatorPosition(bestIndex);
-        };
-
-        const schedule = () => {
-          if (rafId !== 0) return;
-          rafId = window.requestAnimationFrame(update);
-        };
-
-        // smooth indicator movement while scrolling
-        window.addEventListener("scroll", schedule, { passive: true });
-        window.addEventListener("resize", schedule, { passive: true });
-
-        indicator.style.transition = prefersReduced ? "none" : "transform 120ms ease-out";
-
-        update();
-      }
-    }
-  </script>
 </Section>
+
+<style>
+  .exp-card {
+    transform: translate3d(0, 0, 0) scale(0.97);
+    opacity: 0.55;
+    border-color: hsl(var(--border) / 0.5);
+    box-shadow: none;
+    background-color: hsl(var(--card) / 0.45);
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.45s ease,
+      box-shadow 0.45s ease,
+      background-color 0.45s ease;
+  }
+
+  .exp-card.is-active {
+    transform: translate3d(0, 0, 0) scale(1.03);
+    opacity: 1;
+    border-color: hsl(var(--primary) / 0.55);
+    background-color: hsl(var(--card) / 0.85);
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.12),
+      0 18px 40px -18px hsl(var(--primary) / 0.35);
+  }
+
+  .exp-card.is-active .exp-period {
+    color: hsl(var(--primary));
+    border-color: hsl(var(--primary) / 0.35);
+    background-color: hsl(var(--primary) / 0.12);
+    box-shadow: 0 0 12px -4px hsl(var(--primary) / 0.4);
+  }
+
+  .exp-card.is-near {
+    opacity: 0.82;
+    transform: translate3d(0, 0, 0) scale(0.99);
+  }
+
+  #timeline-indicator,
+  #timeline-progress {
+    transition: none;
+  }
+
+  .timeline-pulse {
+    animation: timeline-pulse 2.2s ease-out infinite;
+  }
+
+  @keyframes timeline-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    70% {
+      transform: scale(1.85);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.85);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .exp-card {
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+      transform: none !important;
+    }
+
+    .exp-card.is-active,
+    .exp-card.is-near {
+      transform: none !important;
+    }
+
+    .timeline-pulse {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const timeline = document.getElementById("experience-timeline");
+  const indicator = document.getElementById("timeline-indicator");
+  const progressEl = document.getElementById("timeline-progress");
+
+  if (timeline && indicator && progressEl) {
+    const items = Array.from(timeline.querySelectorAll("li[data-exp-index]"));
+
+    if (items.length > 0) {
+      const prefersReduced =
+        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const dotSize = 32;
+      let activeIndex = -1;
+      let rafId = 0;
+      let currentY = 0;
+      let targetY = 0;
+      let currentProgress = 0;
+      let targetProgress = 0;
+      let animating = false;
+
+      const lerp = (a, b, t) => a + (b - a) * t;
+
+      const applyCardStates = (bestIndex, focusScores) => {
+        items.forEach((li, i) => {
+          const card = li.querySelector(".exp-card");
+          if (!card) return;
+
+          const score = focusScores[i] ?? 0;
+          const isActive = i === bestIndex;
+          card.classList.toggle("is-active", isActive);
+          card.classList.toggle("is-near", !isActive && score > 0.35);
+        });
+
+        activeIndex = bestIndex;
+      };
+
+      const tick = () => {
+        const ease = prefersReduced ? 1 : 0.14;
+        currentY = lerp(currentY, targetY, ease);
+        currentProgress = lerp(currentProgress, targetProgress, ease);
+
+        indicator.style.transform = `translate3d(0, ${currentY}px, 0)`;
+        progressEl.style.transform = `scaleY(${Math.max(0.02, currentProgress)})`;
+        progressEl.style.height = `${timeline.offsetHeight - 16}px`;
+
+        const settled =
+          Math.abs(targetY - currentY) < 0.35 && Math.abs(targetProgress - currentProgress) < 0.002;
+
+        if (settled) {
+          currentY = targetY;
+          currentProgress = targetProgress;
+          indicator.style.transform = `translate3d(0, ${currentY}px, 0)`;
+          progressEl.style.transform = `scaleY(${Math.max(0.02, currentProgress)})`;
+          animating = false;
+          rafId = 0;
+          return;
+        }
+
+        rafId = window.requestAnimationFrame(tick);
+      };
+
+      const startAnim = () => {
+        if (animating) return;
+        animating = true;
+        rafId = window.requestAnimationFrame(tick);
+      };
+
+      const update = () => {
+        const viewportMid = window.innerHeight * 0.42;
+        const timelineRect = timeline.getBoundingClientRect();
+
+        if (timelineRect.bottom < 0 || timelineRect.top > window.innerHeight) return;
+
+        let bestIndex = 0;
+        let bestScore = -1;
+        const focusScores = [];
+
+        for (let i = 0; i < items.length; i++) {
+          const li = items[i];
+          const r = li.getBoundingClientRect();
+          const center = r.top + r.height / 2;
+          const dist = Math.abs(center - viewportMid);
+          const score = Math.max(0, 1 - dist / (window.innerHeight * 0.55));
+          focusScores.push(score);
+          if (score > bestScore) {
+            bestScore = score;
+            bestIndex = i;
+          }
+        }
+
+        const bestLi = items[bestIndex];
+        const bestRect = bestLi.getBoundingClientRect();
+        const centerY = bestRect.top - timelineRect.top + bestRect.height / 2;
+        targetY = Math.round(centerY - dotSize / 2);
+
+        const firstRect = items[0].getBoundingClientRect();
+        const lastRect = items[items.length - 1].getBoundingClientRect();
+        const firstCenter = firstRect.top - timelineRect.top + firstRect.height / 2;
+        const lastCenter = lastRect.top - timelineRect.top + lastRect.height / 2;
+        const span = Math.max(1, lastCenter - firstCenter);
+        targetProgress = Math.min(1, Math.max(0, (centerY - firstCenter) / span));
+
+        applyCardStates(bestIndex, focusScores);
+        startAnim();
+      };
+
+      let scrollRaf = 0;
+      const schedule = () => {
+        if (scrollRaf !== 0) return;
+        scrollRaf = window.requestAnimationFrame(() => {
+          scrollRaf = 0;
+          update();
+        });
+      };
+
+      window.addEventListener("scroll", schedule, { passive: true });
+      window.addEventListener("resize", schedule, { passive: true });
+
+      const firstRect = items[0].getBoundingClientRect();
+      const timelineRect = timeline.getBoundingClientRect();
+      currentY = Math.round(firstRect.top - timelineRect.top + firstRect.height / 2 - dotSize / 2);
+      targetY = currentY;
+      indicator.style.transform = `translate3d(0, ${currentY}px, 0)`;
+      progressEl.style.height = `${timeline.offsetHeight - 16}px`;
+      progressEl.style.transform = "scaleY(0.02)";
+
+      update();
+    }
+  }
+</script>
