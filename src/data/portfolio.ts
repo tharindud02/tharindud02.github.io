@@ -93,7 +93,7 @@ export const skillGroups: SkillGroup[] = [
 export const experience: Experience[] = [
   {
     id: 1,
-    role: "Senior Software Engineer & Blockchain Developer",
+    role: "Senior Software Engineer",
     company: "Apium Innovation (Pvt) Ltd",
     period: "2023 - Present",
     highlights: [
