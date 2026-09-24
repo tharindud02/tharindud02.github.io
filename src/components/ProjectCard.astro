@@ -41,7 +41,7 @@ const theme = categoryTheme[project.category] ?? "from-primary/90 to-emerald-500
 ---
 
 <article
-  class="group project-card bg-card/60 backdrop-blur-xl rounded-2xl overflow-hidden border border-border/60 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-[border-color,box-shadow,opacity,transform] duration-300 flex flex-col h-full reveal"
+  class="group bg-card/60 backdrop-blur-xl rounded-2xl overflow-hidden border border-border/60 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-[border-color,box-shadow,opacity,transform] duration-300 flex flex-col h-full reveal"
   style={`transition-delay:${delayMs}ms`}
 >
   <div class={`relative h-16 overflow-hidden bg-gradient-to-br ${theme} flex items-center justify-between px-4 shrink-0`}>
@@ -53,34 +53,21 @@ const theme = categoryTheme[project.category] ?? "from-primary/90 to-emerald-500
     )}
     <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle at 20% 20%, white 1px, transparent 1px);background-size:16px 16px" aria-hidden="true" />
   </div>
-  <div class="p-4 flex flex-col flex-1 min-h-0">
-    <p class="mb-1.5 text-[11px] font-semibold shrink-0">
+  <div class="p-4 flex flex-col flex-1">
+    <p class="mb-1.5 text-[11px] font-semibold">
       <span class="text-primary">{project.category}</span>
       {project.platform && <span class="text-muted-foreground"> / {project.platform}</span>}
     </p>
-    <h3 class="text-base font-bold mb-2 font-display leading-snug group-hover:text-primary transition-colors shrink-0">{project.title}</h3>
-
-    <div class="project-desc-wrap relative mb-3 h-[4.875rem] shrink-0 overflow-hidden">
-      <div
-        class="project-desc h-full max-h-full overflow-y-auto overscroll-contain text-muted-foreground text-xs leading-relaxed pr-1.5"
-        tabindex="0"
-        role="region"
-        aria-label={`${project.title} description`}
-      >
-        <p class="m-0">{project.description}</p>
-      </div>
-      <div class="project-desc-fade-top" aria-hidden="true"></div>
-      <div class="project-desc-fade-bottom" aria-hidden="true"></div>
-    </div>
-
-    <ul class="flex flex-wrap gap-1.5 mb-3 list-none p-0 m-0 shrink-0">
+    <h3 class="text-base font-bold mb-2 font-display leading-snug group-hover:text-primary transition-colors">{project.title}</h3>
+    <p class="text-muted-foreground text-xs mb-3 flex-1 leading-relaxed">{project.description}</p>
+    <ul class="flex flex-wrap gap-1.5 mb-3 list-none p-0 m-0">
       {project.technologies.map((tech) => (
         <li class="px-2 py-0.5 text-[11px] font-medium bg-secondary/50 text-secondary-foreground rounded-full border border-border/50">
           {tech}
         </li>
       ))}
     </ul>
-    <div class="flex items-center justify-between gap-2 mt-auto shrink-0">
+    <div class="flex items-center justify-between gap-2 mt-auto">
       {project.status && <span class="text-[11px] font-medium text-muted-foreground">{project.status}</span>}
       {hasValidLink && (
         <a
@@ -100,109 +87,3 @@ const theme = categoryTheme[project.category] ?? "from-primary/90 to-emerald-500
     </div>
   </div>
 </article>
-
-<style>
-  .project-desc {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--primary) / 0.45) transparent;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .project-desc::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  .project-desc::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .project-desc::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.35);
-    border-radius: 999px;
-  }
-
-  .project-card:hover .project-desc::-webkit-scrollbar-thumb,
-  .project-desc:focus-visible::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.7);
-  }
-
-  .project-desc-fade-top,
-  .project-desc-fade-bottom {
-    position: absolute;
-    left: 0;
-    right: 4px;
-    height: 0.85rem;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    z-index: 2;
-  }
-
-  .project-desc-fade-top {
-    top: 0;
-    background: linear-gradient(to bottom, hsl(var(--card)) 10%, transparent);
-  }
-
-  .project-desc-fade-bottom {
-    bottom: 0;
-    background: linear-gradient(to top, hsl(var(--card)) 10%, transparent);
-  }
-
-  .project-desc-wrap[data-can-scroll="true"] .project-desc-fade-bottom {
-    opacity: 1;
-  }
-
-  .project-desc-wrap[data-scrolled="true"] .project-desc-fade-top {
-    opacity: 1;
-  }
-
-  .project-desc-wrap[data-at-end="true"] .project-desc-fade-bottom {
-    opacity: 0;
-  }
-</style>
-
-<script>
-  function syncDescFades(wrap: HTMLElement, desc: HTMLElement) {
-    const canScroll = desc.scrollHeight > desc.clientHeight + 1;
-    const scrolled = desc.scrollTop > 2;
-    const atEnd = desc.scrollTop + desc.clientHeight >= desc.scrollHeight - 2;
-
-    wrap.dataset.canScroll = String(canScroll);
-    wrap.dataset.scrolled = String(scrolled);
-    wrap.dataset.atEnd = String(atEnd);
-  }
-
-  function initProjectDescs() {
-    document.querySelectorAll<HTMLElement>(".project-desc-wrap").forEach((wrap) => {
-      const desc = wrap.querySelector<HTMLElement>(".project-desc");
-      if (!desc || desc.dataset.bound === "true") return;
-      desc.dataset.bound = "true";
-
-      syncDescFades(wrap, desc);
-
-      desc.addEventListener(
-        "scroll",
-        () => {
-          syncDescFades(wrap, desc);
-        },
-        { passive: true },
-      );
-
-      // Keep page scroll locked while wheel-scrolling inside overflowed descriptions
-      desc.addEventListener(
-        "wheel",
-        (event) => {
-          if (desc.scrollHeight <= desc.clientHeight + 1) return;
-          const atTop = desc.scrollTop <= 0;
-          const atBottom = desc.scrollTop + desc.clientHeight >= desc.scrollHeight - 1;
-          if ((event.deltaY < 0 && atTop) || (event.deltaY > 0 && atBottom)) return;
-          event.stopPropagation();
-        },
-        { passive: true },
-      );
-    });
-  }
-
-  initProjectDescs();
-  document.addEventListener("astro:page-load", initProjectDescs);
-</script>
